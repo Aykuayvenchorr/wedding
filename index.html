@@ -5,16 +5,246 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Наша свадьба</title>
+    <title>Анастасия & Дмитрий</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #3d3936;
+            background: #f8f5f0;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(248, 245, 240, 0.45),
+                    rgba(248, 245, 240, 0.75)
+                ),
+                url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80")
+                center / cover;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .small-title {
+            font-size: 16px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: clamp(55px, 10vw, 100px);
+            font-weight: normal;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .ampersand {
+            font-size: 55px;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .date {
+            margin-top: 35px;
+            font-size: 20px;
+            letter-spacing: 3px;
+        }
+
+        .intro {
+            padding: 100px 25px;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .intro h2 {
+            font-size: 38px;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        .intro p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .details {
+            padding: 80px 25px;
+            background: #eee8df;
+            text-align: center;
+        }
+
+        .details h2 {
+            font-size: 38px;
+            font-weight: normal;
+            margin-bottom: 50px;
+        }
+
+        .details-grid {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .detail {
+            min-width: 180px;
+        }
+
+        .detail-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .detail-text {
+            font-size: 20px;
+        }
+
+        .footer {
+            padding: 80px 25px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .names {
+            margin-top: 35px;
+            font-size: 32px;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .details-grid {
+                gap: 45px;
+            }
+
+            .intro,
+            .details,
+            .footer {
+                padding-top: 70px;
+                padding-bottom: 70px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Наша свадьба</h1>
+    <section class="hero">
+        <div class="hero-content">
 
-    <p>Анастасия &amp; ...</p>
+            <div class="small-title">
+                Приглашение на свадьбу
+            </div>
 
-    <p>Мы будем рады разделить этот день с вами!</p>
+            <h1>Анастасия</h1>
+
+            <div class="ampersand">&amp;</div>
+
+            <h1>Дмитрий</h1>
+
+            <div class="date">
+                12 ИЮНЯ 2027
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="intro">
+
+        <h2>Дорогие друзья!</h2>
+
+        <p>
+            Мы решили однажды сказать друг другу «да»
+            и теперь хотим разделить этот особенный день
+            с самыми близкими людьми.
+        </p>
+
+        <p>
+            Будем очень рады видеть вас на нашей свадьбе!
+        </p>
+
+    </section>
+
+
+    <section class="details">
+
+        <h2>Этот день</h2>
+
+        <div class="details-grid">
+
+            <div class="detail">
+                <div class="detail-title">
+                    Дата
+                </div>
+
+                <div class="detail-text">
+                    12 июня 2027
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-title">
+                    Время
+                </div>
+
+                <div class="detail-text">
+                    15:00
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-title">
+                    Место
+                </div>
+
+                <div class="detail-text">
+                    Санкт-Петербург
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+        <p>
+            Очень ждём встречи с вами
+            и надеемся провести этот день
+            вместе.
+        </p>
+
+        <div class="names">
+            Анастасия &amp; Дмитрий
+        </div>
+
+    </footer>
 
 </body>
 </html>
