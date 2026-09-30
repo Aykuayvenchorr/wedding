@@ -22,7 +22,7 @@ body {
             rgba(248, 245, 240, 0.45),
             rgba(248, 245, 240, 0.75)
         ),
-        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80")
+        url("img/wed_photo.jfif")
         center / cover;
 }
 
