@@ -507,6 +507,8 @@ h1 {
     align-items: center;
 
     padding: 30px;
+    transform: translateX(-600px);
+
 }
 
 
@@ -587,4 +589,14 @@ h1 {
     visibility: hidden;
 
     pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .envelope-content {
+        transform: translateX(-20px);
+    }
+
+    .envelope-image-wrapper {
+        width: 90vw;
+    }
 }
