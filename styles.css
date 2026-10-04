@@ -1,186 +1,450 @@
+/* ========================================
+   1. ОБЩИЕ НАСТРОЙКИ
+======================================== */
+
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    color: #3d3936;
-    background: #f8f5f0;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #3d3936;
+
+    background: #eee8df;
+}
+
+
+/* ========================================
+   2. ПЕРВЫЙ ЭКРАН — HERO
+======================================== */
+
 .hero {
+    position: relative;
+
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 40px 20px;
 
-    background:
-        linear-gradient(
-            rgba(248, 245, 240, 0.45),
-            rgba(248, 245, 240, 0.75)
-        ),
-        url("img/wed_photo.jfif")
-        center / cover;
+    text-align: center;
+
+    overflow: hidden;
 }
+
+
+/* Видео на фоне */
+
+.hero-video {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    top: 0;
+    left: 0;
+}
+
+
+/* Светлая плёнка поверх видео */
+
+.hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(248, 245, 240, 0.45);
+}
+
+
+/* Текст первого экрана */
 
 .hero-content {
+    position: relative;
+
+    z-index: 1;
+
     max-width: 700px;
+
+    padding: 40px 20px;
 }
+
 
 .small-title {
     font-size: 16px;
+
     letter-spacing: 4px;
+
     text-transform: uppercase;
+
     margin-bottom: 30px;
 }
 
+
 h1 {
     font-size: clamp(55px, 10vw, 100px);
+
     font-weight: normal;
+
     line-height: 1;
+
     margin: 0;
 }
 
+
 .ampersand {
     font-size: 55px;
+
     font-style: italic;
+
     margin: 15px 0;
 }
 
+
 .date {
     margin-top: 35px;
+
     font-size: 20px;
+
     letter-spacing: 3px;
 }
+
 
 .date-number {
     font-size: 26px;
 }
 
-.intro {
-    padding: 100px 25px;
+
+/* ========================================
+   3. БУМАЖНЫЕ СЕКЦИИ
+======================================== */
+
+.paper-section {
+    position: relative;
+
+    max-width: 1050px;
+
+    margin: 80px auto;
+
+    padding: 100px 40px;
+
+    background: #faf7f1;
+
     text-align: center;
+
+    box-shadow:
+        0 15px 35px rgba(61, 57, 54, 0.08);
+}
+
+
+/* Содержимое бумаги */
+
+.paper-content {
+    position: relative;
+
     max-width: 750px;
+
     margin: 0 auto;
 }
 
-.intro h2 {
-    font-size: 38px;
+
+/* ========================================
+   4. ЗАГОЛОВКИ И ТЕКСТ
+======================================== */
+
+.paper-section h2 {
+    margin: 0 0 35px;
+
+    font-size: 40px;
+
     font-weight: normal;
-    margin-bottom: 30px;
 }
 
-.intro p {
+
+.paper-section p {
     font-size: 18px;
+
     line-height: 1.8;
+
+    margin: 0 auto 20px;
 }
+
+
+/* ========================================
+   5. ИНФОРМАЦИЯ О ДНЕ
+======================================== */
 
 .details {
-    padding: 80px 25px;
-    background: #eee8df;
-    text-align: center;
+    background: #f7f1e8;
 }
 
-.details h2 {
-    font-size: 38px;
-    font-weight: normal;
-    margin-bottom: 50px;
-}
 
 .details-grid {
     display: flex;
+
     justify-content: center;
-    gap: 80px;
+
+    gap: 70px;
+
     flex-wrap: wrap;
+
+    margin-top: 50px;
 }
+
 
 .detail {
     min-width: 180px;
 }
 
+
 .detail-title {
     font-size: 14px;
+
     text-transform: uppercase;
+
     letter-spacing: 3px;
+
     margin-bottom: 15px;
 }
+
 
 .detail-text {
     font-size: 20px;
 }
 
+
+/* ========================================
+   6. ССЫЛКА НА КАРТУ
+======================================== */
+
 .map-link {
     display: inline-block;
+
     margin-top: 15px;
 
-    font-size: 16px;
     color: #3d3936;
+
+    font-size: 16px;
+
     text-decoration: none;
 
     border-bottom: 1px solid #3d3936;
+
     padding-bottom: 3px;
+
+    transition: opacity 0.3s ease;
 }
+
 
 .map-link:hover {
-    opacity: 0.6;
+    opacity: 0.5;
 }
+
+
+/* ========================================
+   7. ФОТОГРАФИЯ
+======================================== */
+
+.photo-section {
+    max-width: 900px;
+
+    margin: 100px auto;
+
+    padding: 0 25px;
+
+    text-align: center;
+}
+
+
+.photo-section img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-height: 700px;
+
+    object-fit: cover;
+
+    box-shadow:
+        0 15px 35px rgba(61, 57, 54, 0.12);
+}
+
+
+/* ========================================
+   8. РЕСТОРАН
+======================================== */
 
 .restaurant {
-    padding: 100px 25px;
-    text-align: center;
-    max-width: 750px;
-    margin: 0 auto;
+    background: #f4eee5;
 }
 
-.restaurant h2 {
-    font-size: 38px;
-    font-weight: normal;
-    margin-bottom: 40px;
-}
-
-.restaurant-content {
-    font-size: 18px;
-}
 
 .restaurant-name {
-    font-size: 26px;
-    margin-bottom: 25px;
-}
+    font-size: 28px;
 
-.restaurant-content p {
-    line-height: 1.8;
-    margin-bottom: 25px;
-}
+    margin-bottom: 30px;
 
-.footer {
-    padding: 80px 25px;
-    text-align: center;
-    background: #eee8df;
-}
-
-.footer p {
-    font-size: 18px;
-    line-height: 1.7;
-}
-
-.names {
-    margin-top: 35px;
-    font-size: 32px;
     font-style: italic;
 }
 
+
+/* ========================================
+   9. RSVP
+======================================== */
+
+.rsvp {
+    background: #faf7f1;
+}
+
+
+.rsvp p {
+    max-width: 600px;
+}
+
+
+/* ========================================
+   10. FOOTER
+======================================== */
+
+.footer {
+    padding: 100px 25px;
+
+    text-align: center;
+}
+
+
+.footer p {
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+.names {
+    margin-top: 35px;
+
+    font-size: 32px;
+
+    font-style: italic;
+}
+
+
+/* ========================================
+   11. АНИМАЦИЯ ПОЯВЛЕНИЯ
+======================================== */
+
+.fade-in {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+    transition-delay: 0.3s;
+}
+
+
+.fade-in.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   12. МОБИЛЬНАЯ ВЕРСИЯ
+======================================== */
+
 @media (max-width: 600px) {
-    .details-grid {
-        gap: 45px;
+
+    .hero-content {
+        padding: 30px 20px;
     }
 
-    .intro,
-    .details,
+
+    .small-title {
+        font-size: 13px;
+
+        letter-spacing: 3px;
+    }
+
+
+    h1 {
+        font-size: clamp(48px, 16vw, 75px);
+    }
+
+
+    .ampersand {
+        font-size: 45px;
+
+        margin: 10px 0;
+    }
+
+
+    .date {
+        font-size: 17px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .date-number {
+        font-size: 22px;
+    }
+
+
+    .paper-section {
+        margin: 50px 15px;
+
+        padding: 70px 25px;
+    }
+
+
+    .paper-section h2 {
+        font-size: 32px;
+    }
+
+
+    .paper-section p {
+        font-size: 17px;
+    }
+
+
+    .details-grid {
+        gap: 40px;
+    }
+
+
+    .photo-section {
+        margin: 60px auto;
+
+        padding: 0 15px;
+    }
+
+
     .footer {
-        padding-top: 70px;
-        padding-bottom: 70px;
+        padding: 70px 25px;
+    }
+
+
+    .names {
+        font-size: 27px;
     }
 }
