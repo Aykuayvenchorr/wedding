@@ -591,18 +591,7 @@ h1 {
     pointer-events: none;
 }
 
-@media (max-width: 600px) {
 
-    .envelope-content {
-        transform: translateY(-50px);
-    }
-
-    .envelope-image-wrapper {
-        width: 65vw;
-        margin-top: 50px;
-    }
-
-}
 @media (max-width: 600px) {
     .envelope-image-wrapper {
         width: 60vw !important;
@@ -612,5 +601,8 @@ h1 {
     .envelope-image {
         width: 100% !important;
         height: auto !important;
+    }
+    .envelope-content {
+        transform: translateY(-200px);
     }
 }
