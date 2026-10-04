@@ -603,3 +603,14 @@ h1 {
     }
 
 }
+@media (max-width: 600px) {
+    .envelope-image-wrapper {
+        width: 60vw !important;
+        margin-top: 80px !important;
+    }
+
+    .envelope-image {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
