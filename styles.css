@@ -592,11 +592,14 @@ h1 {
 }
 
 @media (max-width: 600px) {
+
     .envelope-content {
         transform: translateX(-20px);
     }
 
     .envelope-image-wrapper {
-        width: 90vw;
+        width: 65vw;
+        margin-top: 50px;
     }
+
 }
