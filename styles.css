@@ -594,7 +594,7 @@ h1 {
 @media (max-width: 600px) {
 
     .envelope-content {
-        transform: translateX(-50px);
+        transform: translateY(-50px);
     }
 
     .envelope-image-wrapper {
