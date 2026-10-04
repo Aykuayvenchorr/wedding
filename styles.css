@@ -448,3 +448,144 @@ h1 {
         font-size: 27px;
     }
 }
+
+/* ========================================
+   СТРАНИЦА С КОНВЕРТОМ
+======================================== */
+
+.envelope-screen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #eee8df;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+/* Фотография на весь экран */
+
+.envelope-background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Затемнение фотографии */
+
+.envelope-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(35, 30, 27, 0.35);
+}
+
+
+/* Всё содержимое поверх фотографии */
+
+.envelope-content {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 30px;
+    transform: translateX(-600px);
+}
+
+
+/* Конверт */
+
+.envelope-image-wrapper {
+    width: min(500px, 85vw);
+
+    animation: envelopeFloat 4s ease-in-out infinite;
+}
+
+
+.envelope-image {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    box-shadow: none;
+    background: transparent;
+}
+
+
+/* Лёгкое движение конверта */
+
+@keyframes envelopeFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+
+/* Кнопка */
+
+.open-button {
+    margin-top: 40px;
+
+    padding: 14px 30px;
+
+    border: 1px solid #fff;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #fff;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(5px);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.open-button:hover {
+    background: #fff;
+
+    color: #3d3936;
+}
+
+
+/* Исчезновение стартового экрана */
+
+.envelope-screen.opened {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}

@@ -15,3 +15,16 @@ const observer = new IntersectionObserver((entries) => {
 blocks.forEach((block) => {
     observer.observe(block);
 });
+
+const envelopeScreen =
+    document.querySelector("#envelopeScreen");
+
+const openInvitation =
+    document.querySelector("#openInvitation");
+
+
+openInvitation.addEventListener("click", () => {
+
+    envelopeScreen.classList.add("opened");
+
+});
