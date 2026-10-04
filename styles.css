@@ -449,17 +449,20 @@ h1 {
     }
 }
 
+
 /* ========================================
-   СТРАНИЦА С КОНВЕРТОМ
+   13. СТРАНИЦА С КОНВЕРТОМ
 ======================================== */
 
 .envelope-screen {
     position: fixed;
+
     inset: 0;
 
     z-index: 1000;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -473,13 +476,18 @@ h1 {
 }
 
 
-/* Фотография на весь экран */
+/* ========================================
+   14. ФОТО НА ФОНЕ КОНВЕРТА
+======================================== */
 
 .envelope-background {
     position: absolute;
+
     inset: 0;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
 }
 
@@ -495,7 +503,9 @@ h1 {
 }
 
 
-/* Всё содержимое поверх фотографии */
+/* ========================================
+   15. КОНВЕРТ + КНОПКА
+======================================== */
 
 .envelope-content {
     position: relative;
@@ -503,35 +513,54 @@ h1 {
     z-index: 1;
 
     display: flex;
+
     flex-direction: column;
     align-items: center;
 
     padding: 30px;
-    transform: translateX(-600px);
 
+    transform: translateX(-600px);
 }
 
 
-/* Конверт */
+/* ========================================
+   16. КАРТИНКА КОНВЕРТА
+======================================== */
 
 .envelope-image-wrapper {
+    position: relative;
+
     width: min(500px, 85vw);
 
-    animation: envelopeFloat 4s ease-in-out infinite;
+    animation:
+        envelopeFloat 4s ease-in-out infinite;
 }
 
+
+/* После нажатия конверт останавливается */
+
+.envelope-screen.opened .envelope-image-wrapper {
+    animation-play-state: paused;
+}
+
+
+/* Картинка конверта */
 
 .envelope-image {
     display: block;
+
     width: 100%;
     height: auto;
 
     box-shadow: none;
+
     background: transparent;
 }
 
 
-/* Лёгкое движение конверта */
+/* ========================================
+   17. ДВИЖЕНИЕ КОНВЕРТА
+======================================== */
 
 @keyframes envelopeFloat {
 
@@ -547,7 +576,118 @@ h1 {
 }
 
 
-/* Кнопка */
+/* ========================================
+   18. ТЕКСТ НА ЛИСТКЕ
+======================================== */
+
+.letter-text {
+    position: absolute;
+
+    top: 35%;
+    left: 50%;
+
+    z-index: 3;
+
+    width: max-content;
+
+    text-align: center;
+
+    color: #6b5140;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.9);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+}
+
+
+/* Шрифт текста */
+
+.letter-date,
+.letter-names {
+    font-family: "Great Vibes", cursive;
+    white-space: nowrap;
+}
+
+
+/* Дата */
+
+.letter-date {
+    font-size: 25px;
+
+    letter-spacing: 2px;
+}
+
+
+/* Имена */
+
+.letter-names {
+    margin-top: 18px;
+
+    font-size: 25px;
+}
+
+
+/* Каждая буква */
+
+.letter-text span {
+    display: inline-block;
+
+    opacity: 0;
+
+    transform: translateY(4px);
+}
+
+
+/* ========================================
+   19. НАЖАТИЕ «ОТКРЫТЬ ПРИГЛАШЕНИЕ»
+======================================== */
+
+
+/* После клика показываем текст */
+
+.envelope-screen.writing .letter-text {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+
+/* Анимация написания букв */
+
+.envelope-screen.writing .letter-text span {
+    animation:
+        writeLetter 0.18s ease forwards;
+}
+
+
+@keyframes writeLetter {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ========================================
+   20. КНОПКА
+======================================== */
 
 .open-button {
     margin-top: 10px;
@@ -560,7 +700,10 @@ h1 {
 
     color: #fff;
 
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size: 15px;
 
@@ -581,9 +724,11 @@ h1 {
 }
 
 
-/* Исчезновение стартового экрана */
+/* ========================================
+   21. ИСЧЕЗНОВЕНИЕ СТРАНИЦЫ С КОНВЕРТОМ
+======================================== */
 
-.envelope-screen.opened {
+.envelope-screen.hide {
     opacity: 0;
 
     visibility: hidden;
@@ -592,17 +737,53 @@ h1 {
 }
 
 
+/* ========================================
+   22. МОБИЛЬНАЯ ВЕРСИЯ КОНВЕРТА
+======================================== */
+
 @media (max-width: 600px) {
+
     .envelope-image-wrapper {
-        width: 60vw !important;
-        margin-top: 80px !important;
+        width: 60vw;
+
+        margin-top: 80px;
     }
 
+
     .envelope-image {
-        width: 100% !important;
-        height: auto !important;
+        width: 100%;
+
+        height: auto;
     }
+
+
     .envelope-content {
         transform: translateY(120px);
+    }
+
+
+    .letter-text {
+        top: 35%;
+    }
+
+
+    .letter-date {
+        font-size: 14px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    .letter-names {
+        margin-top: 12px;
+
+        font-size: 16px;
+    }
+
+
+    .open-button {
+        font-size: 14px;
+
+        padding: 12px 24px;
     }
 }
