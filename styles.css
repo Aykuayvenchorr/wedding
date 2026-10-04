@@ -603,6 +603,6 @@ h1 {
         height: auto !important;
     }
     .envelope-content {
-        transform: translateY(-600px);
+        transform: translateY(300px);
     }
 }
