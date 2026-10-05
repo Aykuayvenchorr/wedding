@@ -109,6 +109,8 @@ envelopeScreen.addEventListener("click", () => {
 
     if (heroVideo) {
 
+        heroVideo.muted = true;
+
         heroVideo.play().catch((error) => {
             console.log("Видео не запустилось:", error);
         });
