@@ -821,5 +821,9 @@ h1 {
     .tap-text {
         font-size: 13px;
     }
+        /* Поднимаем подсказку "Нажмите на экран" */
+    .tap-hint {
+        transform: translateY(-30px);
+    }
 }
 
