@@ -140,7 +140,7 @@ openInvitation.addEventListener("click", () => {
 
             // Сколько длится написание имён
             const namesDuration =
-                nameLetters.length * 120 + 500;
+                nameLetters.length * 50 + 200;
 
 
             // ========================================
@@ -158,6 +158,6 @@ openInvitation.addEventListener("click", () => {
         }, dateDuration);
 
 
-    }, 300);
+    }, 200);
 
 });
