@@ -28,9 +28,6 @@ blocks.forEach((block) => {
 const envelopeScreen =
     document.querySelector("#envelopeScreen");
 
-const openInvitation =
-    document.querySelector("#openInvitation");
-
 const letterDate =
     document.querySelector(".letter-date");
 
@@ -39,6 +36,7 @@ const letterNames =
 
 const heroVideo =
     document.querySelector(".hero-video");
+
 
 // ========================================
 // ПОДГОТОВКА ТЕКСТА
@@ -62,11 +60,11 @@ function prepareHandwriting(element) {
             span.textContent = character;
         }
 
-        // Задаём задержку каждой букве заранее
+        // Задержка между буквами
         span.style.animationDelay =
             `${letters.length * 0.05}s`;
 
-        // Пока ничего не пишем
+        // Пока текст не пишется
         span.style.animationPlayState = "paused";
 
         element.appendChild(span);
@@ -78,7 +76,7 @@ function prepareHandwriting(element) {
 }
 
 
-// Запоминаем буквы отдельно
+// Запоминаем буквы
 const dateLetters =
     prepareHandwriting(letterDate);
 
@@ -87,49 +85,63 @@ const nameLetters =
 
 
 // ========================================
-// КНОПКА «ОТКРЫТЬ ПРИГЛАШЕНИЕ»
+// КЛИК ПО ЭКРАНУ
 // ========================================
 
-openInvitation.addEventListener("click", () => {
+envelopeScreen.addEventListener("click", () => {
 
-    // Защита от повторного нажатия
-    openInvitation.disabled = true;
+    // Не даём запустить анимацию повторно
+    if (envelopeScreen.classList.contains("opened")) {
+        return;
+    }
 
-    // Останавливаем движение конверта
+
+    // ========================================
+    // ОСТАНАВЛИВАЕМ КОНВЕРТ
+    // ========================================
+
     envelopeScreen.classList.add("opened");
 
 
-    // Запускаем видео заранее.
-    // Пользователь уже нажал кнопку, поэтому это действие
-    // разрешено мобильным браузером.
-    heroVideo.play().catch((error) => {
-        console.log("Видео не запустилось:", error);
-    });
+    // ========================================
+    // ЗАПУСКАЕМ ВИДЕО ОСНОВНОГО ПРИГЛАШЕНИЯ
+    // ========================================
+
+    if (heroVideo) {
+
+        heroVideo.play().catch((error) => {
+            console.log("Видео не запустилось:", error);
+        });
+
+    }
 
 
-    // Небольшая пауза перед началом написания
+    // ========================================
+    // НАЧИНАЕМ ПИСАТЬ
+    // ========================================
+
     setTimeout(() => {
 
         envelopeScreen.classList.add("writing");
 
 
-        // ========================================
-        // ПИШЕМ ДАТУ
-        // ========================================
+        // ====================================
+        // ДАТА
+        // ====================================
 
         dateLetters.forEach((letter) => {
             letter.style.animationPlayState = "running";
         });
 
 
-        // Сколько длится написание даты
+        // Длительность написания даты
         const dateDuration =
             dateLetters.length * 50 + 100;
 
 
-        // ========================================
-        // ПОТОМ ПИШЕМ ИМЕНА
-        // ========================================
+        // ====================================
+        // ИМЕНА
+        // ====================================
 
         setTimeout(() => {
 
@@ -138,15 +150,14 @@ openInvitation.addEventListener("click", () => {
             });
 
 
-            // Сколько длится написание имён
+            // Небольшая пауза после написания
             const namesDuration =
                 nameLetters.length * 50 + 700;
 
 
-            // ========================================
-            // ПОСЛЕ ОКОНЧАНИЯ ВСЕГО ТЕКСТА
-            // ПЕРЕХОДИМ К ПРИГЛАШЕНИЮ
-            // ========================================
+            // ====================================
+            // ОТКРЫВАЕМ ОСНОВНОЕ ПРИГЛАШЕНИЕ
+            // ====================================
 
             setTimeout(() => {
 

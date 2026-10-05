@@ -710,93 +710,67 @@ h1 {
    КРАСИВАЯ КНОПКА «ОТКРЫТЬ ПРИГЛАШЕНИЕ»
 ======================================== */
 
-.open-button {
-    position: relative;
+.tap-hint {
+    margin-top: 20px;
 
-    margin-top: 25px;
+    text-align: center;
 
-    padding: 13px 30px;
+    color: #f3e4d0;
 
-    border: 1px solid rgba(255, 245, 232, 0.75);
-    border-radius: 40px;
-
-    background: rgba(250, 239, 224, 0.88);
-
-    color: #655346;
-
-    font-family: "Bodoni Moda", serif;
-
-    font-size: 20px;
-
-    letter-spacing: 1.5px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 25px rgba(40, 30, 20, 0.18);
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease,
-        background 0.4s ease,
-        color 0.4s ease;
-}
-
-
-/* Маленькое сердечко перед текстом */
-
-.open-button::before {
-    content: "♡";
-
-    display: inline-block;
-
-    margin-right: 10px;
-
-    font-size: 24px;
-
-    line-height: 1;
-
-    transition: transform 0.4s ease;
-}
-
-/* Наведение */
-
-.open-button:hover {
-    background: rgba(255, 248, 239, 0.97);
-
-    color: #4f4035;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 30px rgba(40, 30, 20, 0.25);
-}
-
-
-.open-button:hover::before {
-    transform: scale(1.2);
-}
-
-
-/* Нажатие */
-
-.open-button:active {
-    transform: translateY(0);
-}
-
-
-/* После нажатия кнопка исчезает */
-
-.envelope-screen.opened .open-button {
-    opacity: 0;
-
-    transform:
-        translateY(10px)
-        scale(0.96);
+    text-shadow:
+        0 1px 4px rgba(40, 25, 20, 0.45);
 
     pointer-events: none;
 }
 
+.tap-text {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: #fff4e5;
+
+    text-shadow:
+        0 1px 3px rgba(30, 20, 15, 0.65);
+}
+.tap-icon {
+    width: 55px;
+    height: 55px;
+    animation: tapPulse 1.8s ease-out infinite;
+}
+
+@keyframes tapPulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.08);
+        opacity: 0.7;
+    }
+}
+
+.envelope-screen.opened .tap-hint {
+    opacity: 0;
+
+    transform:
+        translateY(10px)
+        scale(0.95);
+
+    pointer-events: none;
+}
 
 /* ========================================
    21. ИСЧЕЗНОВЕНИЕ СТРАНИЦЫ С КОНВЕРТОМ
@@ -844,8 +818,8 @@ h1 {
         line-height: 1;
     }
 
-    .open-button {
-        font-size: 14px;
-        padding: 12px 24px;
+    .tap-text {
+        font-size: 13px;
     }
 }
+
