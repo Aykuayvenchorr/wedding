@@ -797,135 +797,6 @@ h1 {
     pointer-events: none;
 }
 
-.open-button-wrapper {
-    position: relative;
-
-    margin-top: 25px;
-}
-
-
-/* Сердечки */
-
-.heart-burst {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 1px;
-    height: 1px;
-
-    pointer-events: none;
-
-    z-index: 5;
-}
-
-
-.heart-burst span {
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    color: #f6d7c3;
-
-    font-family: Georgia, serif;
-
-    font-size: 26px;
-
-    font-weight: normal;
-
-    opacity: 0;
-
-    text-shadow:
-        0 1px 4px rgba(45, 25, 20, 0.45);
-
-    -webkit-text-stroke: 0.5px rgba(255, 240, 225, 0.5);
-}
-
-
-/* Разлёт сердечек */
-
-.envelope-screen.opened .heart-burst span {
-    animation: heartFly 1.4s ease-out forwards;
-}
-
-
-/* Каждое сердечко летит в свою сторону */
-
-.heart-burst span:nth-child(1) {
-    --x: -100px;
-    --y: -70px;
-    --rotate: -25deg;
-}
-
-.heart-burst span:nth-child(2) {
-    --x: -65px;
-    --y: -115px;
-    --rotate: -10deg;
-}
-
-.heart-burst span:nth-child(3) {
-    --x: 0px;
-    --y: -135px;
-    --rotate: 10deg;
-}
-
-.heart-burst span:nth-child(4) {
-    --x: 70px;
-    --y: -105px;
-    --rotate: 25deg;
-}
-
-.heart-burst span:nth-child(5) {
-    --x: 110px;
-    --y: -35px;
-    --rotate: 40deg;
-}
-
-.heart-burst span:nth-child(6) {
-    --x: 75px;
-    --y: 45px;
-    --rotate: 20deg;
-}
-
-.heart-burst span:nth-child(7) {
-    --x: -70px;
-    --y: 50px;
-    --rotate: -30deg;
-}
-
-.heart-burst span:nth-child(8) {
-    --x: -120px;
-    --y: 10px;
-    --rotate: -40deg;
-}
-
-
-@keyframes heartFly {
-
-    0% {
-        opacity: 0;
-        transform:
-            translate(0, 0)
-            scale(0.3)
-            rotate(0deg);
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translate(var(--x), var(--y))
-            scale(1)
-            rotate(var(--rotate));
-    }
-
-}
 
 /* ========================================
    21. ИСЧЕЗНОВЕНИЕ СТРАНИЦЫ С КОНВЕРТОМ
@@ -948,43 +819,33 @@ h1 {
 
     .envelope-image-wrapper {
         width: 60vw;
-
         margin-top: 80px;
     }
-
-
-    .envelope-image {
-        width: 100%;
-
-        height: auto;
-    }
-
 
     .envelope-content {
         transform: translateY(120px);
     }
 
-
     .letter-text {
-        top: 35%;
+        top: 42%;
+        left: 50%;
+        line-height: 1;
     }
-
 
     .letter-date {
-        font-size: 14px;
-
-        letter-spacing: 1.5px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 1;
     }
-
 
     .letter-names {
-        font-size: 14px;
+        margin-top: 5px;
+        font-size: 15px;
+        line-height: 1;
     }
-
 
     .open-button {
         font-size: 14px;
-
         padding: 12px 24px;
     }
 }

@@ -64,7 +64,7 @@ function prepareHandwriting(element) {
 
         // Задаём задержку каждой букве заранее
         span.style.animationDelay =
-            `${letters.length * 0.08}s`;
+            `${letters.length * 0.05}s`;
 
         // Пока ничего не пишем
         span.style.animationPlayState = "paused";
