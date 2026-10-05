@@ -124,7 +124,7 @@ openInvitation.addEventListener("click", () => {
 
         // Сколько длится написание даты
         const dateDuration =
-            dateLetters.length * 120 + 300;
+            dateLetters.length * 50 + 200;
 
 
         // ========================================
@@ -140,7 +140,7 @@ openInvitation.addEventListener("click", () => {
 
             // Сколько длится написание имён
             const namesDuration =
-                nameLetters.length * 50 + 200;
+                nameLetters.length * 50 + 700;
 
 
             // ========================================
