@@ -7,6 +7,7 @@
     <title>Дмитрий & Анастасия</title> 
     <link rel="stylesheet" href="styles.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="envelope-screen" id="envelopeScreen">
@@ -33,9 +34,24 @@
             <div class="letter-names">Дмитрий &amp; Анастасия</div>
         </div>
 
-        <button class="open-button" id="openInvitation">
-            Открыть приглашение
-        </button>
+        <div class="open-button-wrapper">
+
+            <button class="open-button" id="openInvitation">
+                Открыть
+            </button>
+
+            <div class="heart-burst" id="heartBurst">
+                <span>♥</span>
+                <span>♥</span>
+                <span>♥</span>
+                <span>♥</span>
+                <span>♥</span>
+                <span>♥</span>
+                <span>♥</span>
+                <span>♥</span>
+            </div>
+
+        </div>
 
     </div>
 
@@ -44,7 +60,7 @@
     </section>
     <!-- Первый экран -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" muted loop playsinline>
             <source src="wedding-video.mp4" type="video/mp4">
         </video>
 

@@ -37,6 +37,8 @@ const letterDate =
 const letterNames =
     document.querySelector(".letter-names");
 
+const heroVideo =
+    document.querySelector(".hero-video");
 
 // ========================================
 // ПОДГОТОВКА ТЕКСТА
@@ -62,7 +64,7 @@ function prepareHandwriting(element) {
 
         // Задаём задержку каждой букве заранее
         span.style.animationDelay =
-            `${letters.length * 0.12}s`;
+            `${letters.length * 0.08}s`;
 
         // Пока ничего не пишем
         span.style.animationPlayState = "paused";
@@ -93,20 +95,26 @@ openInvitation.addEventListener("click", () => {
     // Защита от повторного нажатия
     openInvitation.disabled = true;
 
-
     // Останавливаем движение конверта
     envelopeScreen.classList.add("opened");
 
 
-    // Небольшая пауза перед написанием
+    // Запускаем видео заранее.
+    // Пользователь уже нажал кнопку, поэтому это действие
+    // разрешено мобильным браузером.
+    heroVideo.play().catch((error) => {
+        console.log("Видео не запустилось:", error);
+    });
+
+
+    // Небольшая пауза перед началом написания
     setTimeout(() => {
 
-        // Запускаем анимацию букв
         envelopeScreen.classList.add("writing");
 
 
         // ========================================
-        // СНАЧАЛА ПИШЕМ ДАТУ
+        // ПИШЕМ ДАТУ
         // ========================================
 
         dateLetters.forEach((letter) => {
@@ -114,13 +122,14 @@ openInvitation.addEventListener("click", () => {
         });
 
 
-        // ========================================
-        // ПОСЛЕ ДАТЫ ПИШЕМ ИМЕНА
-        // ========================================
-
+        // Сколько длится написание даты
         const dateDuration =
             dateLetters.length * 120 + 300;
 
+
+        // ========================================
+        // ПОТОМ ПИШЕМ ИМЕНА
+        // ========================================
 
         setTimeout(() => {
 
@@ -128,20 +137,27 @@ openInvitation.addEventListener("click", () => {
                 letter.style.animationPlayState = "running";
             });
 
+
+            // Сколько длится написание имён
+            const namesDuration =
+                nameLetters.length * 120 + 500;
+
+
+            // ========================================
+            // ПОСЛЕ ОКОНЧАНИЯ ВСЕГО ТЕКСТА
+            // ПЕРЕХОДИМ К ПРИГЛАШЕНИЮ
+            // ========================================
+
+            setTimeout(() => {
+
+                envelopeScreen.classList.add("hide");
+
+            }, namesDuration);
+
+
         }, dateDuration);
 
 
     }, 300);
-
-
-    // ========================================
-    // УБИРАЕМ ЭКРАН ПОСЛЕ АНИМАЦИИ
-    // ========================================
-
-    setTimeout(() => {
-
-        envelopeScreen.classList.add("hide");
-
-    }, 6000);
 
 });
