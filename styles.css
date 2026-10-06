@@ -456,10 +456,12 @@ h1 {
         
         background-position: center center;
     }
-
+    .footer p {
+        font-size: 14px;
+    }
 
     .names {
-        font-size: 23px;
+        font-size: 16px;
     }
 }
 
