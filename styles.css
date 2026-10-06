@@ -336,32 +336,26 @@ h1 {
 
 .footer p {
     max-width: 600px;
-
     margin: 0 auto;
-
     font-size: 18px;
-
     line-height: 1.8;
-    color: #f0dfc8;
-
-    text-shadow:
-        0 1px 2px rgba(30, 20, 15, 0.25);
 }
 
 
 .names {
     margin-top: 25px;
-
     font-size: 32px;
-
     font-style: italic;
-    color: #f0dfc8;
-
-    text-shadow:
-        0 1px 2px rgba(30, 20, 15, 0.25);
 }
 
-
+.footer p,
+.names {
+    color: #f0dfc8;
+    text-shadow:
+    0 2px 5px rgba(20, 15, 12, 0.9),
+    0 4px 10px rgba(20, 15, 12, 0.75),
+    0 6px 18px rgba(20, 15, 12, 0.55);
+}
 /* ========================================
    11. АНИМАЦИЯ ПОЯВЛЕНИЯ
 ======================================== */
@@ -458,12 +452,14 @@ h1 {
 
 
     .footer {
-        padding: 70px 25px;
+        padding: 25px 25px;
+        
+        background-position: center center;
     }
 
 
     .names {
-        font-size: 27px;
+        font-size: 23px;
     }
 }
 
