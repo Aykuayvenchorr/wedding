@@ -1,0 +1,221 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1200 650"
+    preserveAspectRatio="none"
+>
+    <defs>
+
+        <!-- Яркое тёплое свечение -->
+        <radialGradient id="warmLight" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="18%" stop-color="#FFFDF0"/>
+            <stop offset="38%" stop-color="#FFF3BE"/>
+            <stop offset="58%" stop-color="#FFE08A" stop-opacity="0.95"/>
+            <stop offset="78%" stop-color="#F6C75F" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#F6C75F" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Большой мягкий ореол -->
+        <filter
+            id="softGlow"
+            x="-250%"
+            y="-250%"
+            width="600%"
+            height="600%"
+        >
+            <feGaussianBlur stdDeviation="6"/>
+        </filter>
+
+        <!-- Одна лампочка -->
+        <g id="bulb">
+
+            <!-- Провод к лампочке -->
+            <path
+                d="M 0,0 C -1,9 2,16 0,24"
+                fill="none"
+                stroke="#EEE5D5"
+                stroke-width="1.7"
+                stroke-linecap="round"
+            />
+
+            <!-- Патрон -->
+            <rect
+                x="-3.5"
+                y="22"
+                width="7"
+                height="5"
+                rx="1.5"
+                fill="#D9CFBB"
+            />
+
+            <!-- Большое мягкое свечение -->
+            <circle
+                cx="0"
+                cy="38"
+                r="17"
+                fill="#FFD96F"
+                opacity="0.48"
+                filter="url(#softGlow)"
+            />
+
+            <!-- Основное свечение -->
+            <circle
+                cx="0"
+                cy="38"
+                r="13"
+                fill="url(#warmLight)"
+            />
+
+            <!-- Яркое ядро -->
+            <ellipse
+                cx="0"
+                cy="38"
+                rx="4"
+                ry="5.5"
+                fill="#FFFDF0"
+            />
+
+            <!-- Блик -->
+            <ellipse
+                cx="-1"
+                cy="36.5"
+                rx="1.6"
+                ry="2"
+                fill="#FFFFFF"
+            />
+
+        </g>
+
+    </defs>
+
+
+    <!-- ================================================= -->
+    <!-- ВСЯ ГИРЛЯНДА -->
+    <!-- СИЛЬНО СЖАТА ПО ВЕРТИКАЛИ -->
+    <!-- ================================================= -->
+
+    <g transform="matrix(1 0 0 0.45 0 85)">
+
+
+        <!-- ================================================= -->
+        <!-- ПЕРЕПЛЕТЁННЫЕ ПРОВОДА -->
+        <!-- ================================================= -->
+
+        <!-- Провод 1 -->
+        <path
+            d="
+                M -80,55
+                C 60,35 130,105 225,125
+                C 320,145 350,75 445,110
+                C 540,145 560,210 660,220
+                C 755,230 790,160 890,195
+                C 1000,235 1055,285 1280,315
+            "
+            fill="none"
+            stroke="#B8A58A"
+            stroke-width="3"
+            stroke-linecap="round"
+        />
+
+        <!-- Провод 2 -->
+        <path
+            d="
+                M -80,125
+                C 55,150 125,85 220,105
+                C 315,125 350,190 440,170
+                C 530,150 555,95 650,125
+                C 745,155 775,245 875,245
+                C 980,245 1045,320 1280,355
+            "
+            fill="none"
+            stroke="#B8A58A"
+            stroke-width="2.8"
+            stroke-linecap="round"
+        />
+
+        <!-- Провод 3 -->
+        <path
+            d="
+                M -100,200
+                C 35,170 125,230 220,195
+                C 315,160 370,125 450,155
+                C 535,185 565,255 650,245
+                C 735,235 775,155 870,200
+                C 965,245 1030,350 1280,390
+            "
+            fill="none"
+            stroke="#B8A58A"
+            stroke-width="3"
+            stroke-linecap="round"
+        />
+
+        <!-- Провод 4 -->
+        <path
+            d="
+                M -100,275
+                C 40,320 135,190 225,225
+                C 320,260 365,300 455,245
+                C 540,195 575,150 665,185
+                C 755,220 785,305 875,285
+                C 980,260 1060,375 1280,425
+            "
+            fill="none"
+            stroke="#B8A58A"
+            stroke-width="2.7"
+            stroke-linecap="round"
+        />
+
+        <!-- Провод 5 -->
+        <path
+            d="
+                M -100,390
+                C 45,350 140,455 230,425
+                C 320,395 375,500 460,455
+                C 550,405 590,300 675,345
+                C 760,390 805,470 890,440
+                C 990,405 1080,525 1280,565
+            "
+            fill="none"
+            stroke="#B8A58A"
+            stroke-width="3"
+            stroke-linecap="round"
+        />
+
+
+        <!-- ================================================= -->
+        <!-- ЛАМПОЧКИ -->
+        <!-- ================================================= -->
+
+        <!-- Провод 1 -->
+        <use href="#bulb" transform="translate(225,125)"/>
+        <use href="#bulb" transform="translate(445,110)"/>
+        <use href="#bulb" transform="translate(660,220)"/>
+        <use href="#bulb" transform="translate(890,195)"/>
+
+        <!-- Провод 2 -->
+        <use href="#bulb" transform="translate(220,105)"/>
+        <use href="#bulb" transform="translate(440,170)"/>
+        <use href="#bulb" transform="translate(650,125)"/>
+        <use href="#bulb" transform="translate(875,245)"/>
+
+        <!-- Провод 3 -->
+        <use href="#bulb" transform="translate(220,195)"/>
+        <use href="#bulb" transform="translate(450,155)"/>
+        <use href="#bulb" transform="translate(650,245)"/>
+        <use href="#bulb" transform="translate(870,200)"/>
+
+        <!-- Провод 4 -->
+        <use href="#bulb" transform="translate(225,225)"/>
+        <use href="#bulb" transform="translate(455,245)"/>
+        <use href="#bulb" transform="translate(665,185)"/>
+        <use href="#bulb" transform="translate(875,285)"/>
+
+        <!-- Провод 5 -->
+        <use href="#bulb" transform="translate(230,425)"/>
+        <use href="#bulb" transform="translate(460,455)"/>
+        <use href="#bulb" transform="translate(675,345)"/>
+        <use href="#bulb" transform="translate(890,440)"/>
+
+    </g>
+
+</svg>
