@@ -361,8 +361,7 @@ h1 {
 
 .footer p,
 .footer .names {
-    color: #eee8df;
-    text-shadow: none;
+    transform: translateY(-270px);
 }
 
 
@@ -654,7 +653,7 @@ h1 {
 
     /* Нижняя гирлянда выходит ниже details, не меняя высоту секции */
     .garland-bottom {
-        bottom: -50px;
+        bottom: -70px;
         left: 50%;
         width: 100vw;
         height: auto;

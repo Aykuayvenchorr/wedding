@@ -183,39 +183,157 @@
 
 
         <!-- ================================================= -->
-        <!-- ЛАМПОЧКИ -->
+        <!-- ЛАМПОЧКИ С ПЛАВНОЙ АНИМАЦИЕЙ -->
         <!-- ================================================= -->
 
         <!-- Провод 1 -->
-        <use href="#bulb" transform="translate(225,125)"/>
-        <use href="#bulb" transform="translate(445,110)"/>
-        <use href="#bulb" transform="translate(660,220)"/>
-        <use href="#bulb" transform="translate(890,195)"/>
+        <use href="#bulb" transform="translate(225,125)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(445,110)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.35s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(660,220)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.7s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(890,195)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.05s"
+                repeatCount="indefinite"/>
+        </use>
+
 
         <!-- Провод 2 -->
-        <use href="#bulb" transform="translate(220,105)"/>
-        <use href="#bulb" transform="translate(440,170)"/>
-        <use href="#bulb" transform="translate(650,125)"/>
-        <use href="#bulb" transform="translate(875,245)"/>
+        <use href="#bulb" transform="translate(220,105)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.18s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(440,170)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.53s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(650,125)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.88s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(875,245)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.23s"
+                repeatCount="indefinite"/>
+        </use>
+
 
         <!-- Провод 3 -->
-        <use href="#bulb" transform="translate(220,195)"/>
-        <use href="#bulb" transform="translate(450,155)"/>
-        <use href="#bulb" transform="translate(650,245)"/>
-        <use href="#bulb" transform="translate(870,200)"/>
+        <use href="#bulb" transform="translate(220,195)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.42s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(450,155)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.07s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(650,245)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.4s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(870,200)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.85s"
+                repeatCount="indefinite"/>
+        </use>
+
 
         <!-- Провод 4 -->
-        <use href="#bulb" transform="translate(225,225)"/>
-        <use href="#bulb" transform="translate(455,245)"/>
-        <use href="#bulb" transform="translate(665,185)"/>
-        <use href="#bulb" transform="translate(875,285)"/>
+        <use href="#bulb" transform="translate(225,225)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.12s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(455,245)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.25s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(665,185)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.55s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(875,285)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.62s"
+                repeatCount="indefinite"/>
+        </use>
+
 
         <!-- Провод 5 -->
-        <use href="#bulb" transform="translate(230,425)"/>
-        <use href="#bulb" transform="translate(460,455)"/>
-        <use href="#bulb" transform="translate(675,345)"/>
-        <use href="#bulb" transform="translate(890,440)"/>
+        <use href="#bulb" transform="translate(230,425)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.7s"
+                repeatCount="indefinite"/>
+        </use>
 
+        <use href="#bulb" transform="translate(460,455)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="0.95s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(675,345)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.85s"
+                repeatCount="indefinite"/>
+        </use>
+
+        <use href="#bulb" transform="translate(890,440)">
+            <animateTransform attributeName="transform" type="scale"
+                additive="sum" values="1 1;1.22 1.22;0.94 0.94;1 1"
+                keyTimes="0;0.3;0.7;1" dur="2.4s" begin="1.35s"
+                repeatCount="indefinite"/>
+        </use>
     </g>
 
 </svg>
