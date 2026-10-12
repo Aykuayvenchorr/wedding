@@ -572,6 +572,30 @@ h1 {
     .names {
         font-size: 16px;
     }
+    .footer::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background:
+            /* Переход в фотографию только сверху */
+            linear-gradient(
+                to bottom,
+                #eee8df 0%,
+                rgba(238, 232, 223, 0.85) 10%,
+                rgba(238, 232, 223, 0.4) 23%,
+                rgba(238, 232, 223, 0) 40%
+            ),
+
+            /* Лёгкое смягчение фотографии */
+            linear-gradient(
+                rgba(248, 245, 240, 0.15),
+                rgba(248, 245, 240, 0.25)
+            );
+
+        pointer-events: none;
+        z-index: 0;
+    }
 }
 
 
