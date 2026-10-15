@@ -173,22 +173,26 @@ h1 {
     pointer-events: none;
 }
 
-/* Верхняя гирлянда. Отрицательный top позволяет ей заходить
-   на предыдущую секцию, не меняя высоту details. */
+/* Верхняя гирлянда — сохраняем пропорции SVG */
 .details::after {
     content: "";
     position: absolute;
-    top: -170px;
+
+    top: -450px;
     left: 50%;
-    z-index: 2;
+
     width: 100%;
-    height: 380px;
+    height: calc(100vw * 650 / 1200);
+
     transform: translateX(-50%);
-    background-image: url("garland.svg");
+
+    background-image: url("garland-desktop.svg");
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100% 100%;
+
     pointer-events: none;
+    z-index: 2;
 }
 
 .details .paper-content {
@@ -200,12 +204,12 @@ h1 {
    но обязательно вне .paper-content. */
 .garland-bottom {
     position: absolute;
-    bottom: -300px;
+    bottom: -800px;
     left: 50%;
     z-index: 5;
     display: block;
     width: 100%;
-    height: 380px;
+    height: calc(100vw * 650 / 1200);
     transform: translateX(-50%);
     pointer-events: none;
 }
@@ -363,6 +367,35 @@ h1 {
 .footer p,
 .footer .names {
     transform: translateY(-270px);
+}
+.footer-frame {
+    width: min(600px, 100%);
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-image: url("oval.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+
+    padding: 35px 45px;
+}
+
+.footer-frame p {
+    margin: 0 0 10px;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #183d32;
+}
+
+.footer-frame span {
+    font-size: 16px;
+    color: #3d3933;
 }
 
 
@@ -647,6 +680,7 @@ h1 {
         top: -30px;
         left: 50%;
         width: 100vw;
+        background-image: url("garland.svg");
         height: 54.1667vw; /* пропорции SVG 1200 × 650 */
         transform: translateX(-50%) rotate(3deg);
         transform-origin: left top;
@@ -679,7 +713,18 @@ h1 {
     .names {
         font-size: 16px;
     }
+    .footer-frame {
+        min-height: 150px;
+        padding: 25px 30px;
+    }
 
+    .footer-frame p {
+        font-size: 22px;
+    }
+
+    .footer-frame span {
+        font-size: 14px;
+    }
     /* Конверт */
     .envelope-image-wrapper {
         width: 60vw;
@@ -714,5 +759,383 @@ h1 {
 
     .tap-hint {
         transform: translateY(-30px);
+    }
+}
+
+/* ========================================
+   RSVP — ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ
+======================================== */
+
+.rsvp {
+    background-color: #eee8df;
+    color: var(--color-light-text);
+    padding-top: 70px;
+    padding-bottom: 80px;
+}
+
+.rsvp .paper-content {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.rsvp h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rsvp .paper-content > p {
+    text-align: center;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+
+/* Поля формы */
+
+#rsvp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.rsvp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.rsvp-field > label,
+.rsvp-field legend {
+    display: block;
+    padding: 0;
+    color: var(--color-light-text);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+}
+
+.rsvp-field legend {
+    margin-bottom: 12px;
+}
+
+.rsvp-hint {
+    margin: 0;
+    color: var(--color-light-text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* Текстовые поля */
+
+.rsvp-field > input[type="text"],
+.rsvp-field > textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-light-text);
+
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid #c9c0b1;
+    border-radius: 0;
+
+    transition: border-color 0.2s ease;
+}
+
+.rsvp-field > textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.rsvp-field > input[type="text"]:focus,
+.rsvp-field > textarea:focus,
+.companion-row input:focus,
+.companion-row select:focus {
+    outline: none;
+    border-color: var(--color-light-text);
+}
+
+.rsvp-field input::placeholder,
+.rsvp-field textarea::placeholder,
+.companion-row input::placeholder {
+    color: var(--color-light-text);
+    opacity: 1;
+}
+
+
+/* Варианты присутствия */
+
+.rsvp-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--color-light-text);
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.rsvp-option input[type="radio"] {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    margin: 0;
+    accent-color: var(--color-light-text);
+}
+
+
+/* Список сопровождающих */
+
+#companions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.companion-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 125px 30px;
+    align-items: center;
+    gap: 8px;
+}
+
+.companion-row input,
+.companion-row select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 10px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    color: var(--color-light-text);
+
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid #c9c0b1;
+    border-radius: 0;
+}
+
+.companion-row select {
+    cursor: pointer;
+}
+
+
+/* Кнопки добавления и удаления */
+
+.rsvp-add-button {
+    align-self: flex-start;
+    padding: 8px 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    color: var(--color-light-text);
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-light-text);
+
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.rsvp-remove-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 38px;
+    padding: 0;
+
+    font-size: 23px;
+    line-height: 1;
+    color: var(--color-light-text);
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.rsvp-add-button:hover,
+.rsvp-remove-button:hover {
+    opacity: 0.65;
+}
+
+
+/* Кнопка отправки */
+
+.rsvp-submit-button {
+    width: 100%;
+    min-height: 50px;
+    padding: 14px 20px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    color: var(--color-light-text);
+
+    background: var(--color-dark-background);
+    border: 1px solid var(--color-light-text);
+    border-radius: 0;
+
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.rsvp-submit-button:hover:not(:disabled) {
+    color: var(--color-light-text);
+    background: transparent;
+}
+
+.rsvp-submit-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+
+/* Сообщения об отправке */
+
+.rsvp-message {
+    padding: 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.rsvp-message.success {
+    color: var(--color-light-text);
+    border: 1px solid #aab8a9;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.rsvp-message.error {
+    color: #8b3434;
+    border: 1px solid #c99b95;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Не показываем скрытые блоки */
+
+.rsvp [hidden] {
+    display: none !important;
+}
+
+
+/* ========================================
+   АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ
+======================================== */
+
+@media (max-width: 600px) {
+
+    .rsvp {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+
+    .rsvp .paper-content {
+        width: 100%;
+    }
+
+    #rsvp-form {
+        gap: 21px;
+    }
+
+    .rsvp-field > label,
+    .rsvp-field legend {
+        font-size: 16px;
+    }
+
+    .rsvp-field > input[type="text"],
+    .rsvp-field > textarea {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .companion-row {
+        grid-template-columns: minmax(0, 1fr) 105px 24px;
+        gap: 5px;
+    }
+
+    .companion-row input,
+    .companion-row select {
+        padding: 11px 6px;
+        font-size: 13px;
+    }
+
+    .rsvp-remove-button {
+        width: 24px;
+    }
+
+    .rsvp-submit-button {
+        min-height: 48px;
+    }
+}
+
+
+/* ========================================
+   RSVP — ЗЕЛЁНОЕ ПОЛОТНО
+======================================== */
+
+.rsvp {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+
+    margin: 100px 0;
+    padding: 100px 25px;
+
+    background: #eee8df;
+}
+
+.rsvp::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    top: -35px;
+    bottom: -35px;
+    left: -10%;
+    right: -10%;
+
+    background-image: url("green-strip-mobile.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+
+    pointer-events: none;
+}
+
+.rsvp .paper-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .rsvp {
+        margin: 50px 0;
+        padding: 70px 25px;
+    }
+
+    .rsvp::before {
+        top: -25px;
+        bottom: -25px;
+        left: -5%;
+        right: -5%;
     }
 }

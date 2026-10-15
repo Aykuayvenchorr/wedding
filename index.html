@@ -1,59 +1,77 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<head> 
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Дмитрий & Анастасия</title> 
-    <link rel="stylesheet" href="styles_refactored.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&display=swap" rel="stylesheet">   
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-</head>
-<body>
-<div class="envelope-screen" id="envelopeScreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <img
-        src="background.jfif"
-        alt=""
-        class="envelope-background"
+    <title>Дмитрий &amp; Анастасия</title>
+
+    <link rel="stylesheet" href="styles_refactored.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&display=swap"
+        rel="stylesheet"
     >
 
-    <div class="envelope-overlay"></div>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&display=swap"
+        rel="stylesheet"
+    >
 
-    <div class="envelope-content">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
+        rel="stylesheet"
+    >
+</head>
 
-        <div class="envelope-image-wrapper">
-            <img
-                src="env.png"
-                alt="Конверт"
-                class="envelope-image"
-            >
-        </div>
-        <div class="letter-text">
-            <div class="letter-date">10 июля 2027</div>
-            <div class="letter-names">Дмитрий &amp; Анастасия</div>
-        </div>
+<body>
 
-        <div class="tap-hint">
+    <!-- Конверт -->
+    <div class="envelope-screen" id="envelopeScreen">
 
-            <img
-                src="tap.svg"
-                alt=""
-                class="tap-icon"
-            >
+        <img
+            src="background.jfif"
+            alt=""
+            class="envelope-background"
+        >
 
-            <div class="tap-text">
-                НАЖМИТЕ НА ЭКРАН
+        <div class="envelope-overlay"></div>
+
+        <div class="envelope-content">
+
+            <div class="envelope-image-wrapper">
+                <img
+                    src="env.png"
+                    alt="Конверт"
+                    class="envelope-image"
+                >
+            </div>
+
+            <div class="letter-text">
+                <div class="letter-date">10 июля 2027</div>
+                <div class="letter-names">Дмитрий &amp; Анастасия</div>
+            </div>
+
+            <div class="tap-hint">
+                <img
+                    src="tap.svg"
+                    alt=""
+                    class="tap-icon"
+                >
+
+                <div class="tap-text">
+                    НАЖМИТЕ НА ЭКРАН
+                </div>
             </div>
 
         </div>
-
     </div>
 
-</div>
+
     <!-- Первый экран -->
     <section class="hero">
+
         <video
             class="hero-video"
             muted
@@ -107,7 +125,6 @@
             </p>
 
         </div>
-
     </section>
 
 
@@ -121,38 +138,28 @@
             <div class="details-grid">
 
                 <div class="detail">
-                    <div class="detail-title">
-                        Дата
-                    </div>
-
-                    <div class="detail-text">
-                        10 июля 2027
-                    </div>
+                    <div class="detail-title">Дата</div>
+                    <div class="detail-text">10 июля 2027</div>
                 </div>
 
                 <div class="detail">
-                    <div class="detail-title">
-                        Время
-                    </div>
-
-                    <div class="detail-text">
-                        9:20
-                    </div>
+                    <div class="detail-title">Время</div>
+                    <div class="detail-text">9:20</div>
                 </div>
 
                 <div class="detail">
-                    <div class="detail-title">
-                        Место
-                    </div>
+                    <div class="detail-title">Место</div>
 
                     <div class="detail-text">
-                        Санкт-Петербург,<br>Фурштатская ул., 52
+                        Санкт-Петербург,<br>
+                        Фурштатская ул., 52
                     </div>
 
                     <a
                         class="map-link"
                         href="https://yandex.ru/maps/-/CXeqbVYS"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         📍 адрес
                     </a>
@@ -161,8 +168,22 @@
             </div>
 
         </div>
-        <img src="garland.svg" class="garland-bottom" alt="">
+
+        <picture>
+            <source
+                media="(min-width: 601px)"
+                srcset="garland-desktop.svg"
+            >
+
+            <img
+                src="garland.svg"
+                class="garland-bottom"
+                alt=""
+            >
+        </picture>
+
     </section>
+
 
     <!-- Ресторан -->
     <section class="paper-section restaurant fade-in">
@@ -172,18 +193,20 @@
             <h2>Ресторан</h2>
 
             <div class="restaurant-name">
-                Vinity<br>наб. реки Фонтанки, 40/68
+                Пока хз какой<br>
+                ул. Пушкина, дом Калатушкина
             </div>
 
             <p>
                 После церемонии будем рады продолжить этот день
-                вместе с вами за праздничным ужином
+                вместе с вами за праздничным ужином.
             </p>
 
             <a
                 class="map-link"
                 href="https://yandex.ru/maps/-/CXeqbX3g"
                 target="_blank"
+                rel="noopener noreferrer"
             >
                 📍 адрес
             </a>
@@ -191,11 +214,159 @@
         </div>
 
     </section>
+
+
+    <!-- Подтверждение присутствия -->
+    <section class="paper-section rsvp fade-in" id="rsvp">
+
+        <div class="paper-content">
+
+            <h2>Будете с нами?</h2>
+
+            <p>
+                Пожалуйста, подтвердите своё присутствие
+                и сообщите, кто придёт вместе с вами.
+            </p>
+
+            <form
+                id="rsvp-form"
+                action="https://formspree.io/f/xaeqaegk"
+                method="POST"
+            >
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="Ответ на свадебное приглашение — Дмитрий и Анастасия"
+                >
+
+                <!-- Имя приглашённого -->
+                <div class="rsvp-field">
+
+                    <label for="guest-name">
+                        Ваше имя и фамилия
+                    </label>
+
+                    <input
+                        type="text"
+                        id="guest-name"
+                        name="Имя и фамилия гостя"
+                        placeholder="Например, Анна Иванова"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Присутствие -->
+                <fieldset class="rsvp-field">
+
+                    <legend>Сможете прийти?</legend>
+
+                    <label class="rsvp-option">
+                        <input
+                            type="radio"
+                            name="Присутствие"
+                            value="Буду"
+                            required
+                        >
+                        <span>С удовольствием буду!</span>
+                    </label>
+
+                    <label class="rsvp-option">
+                        <input
+                            type="radio"
+                            name="Присутствие"
+                            value="Не смогу прийти"
+                        >
+                        <span>К сожалению, не смогу</span>
+                    </label>
+
+                </fieldset>
+
+
+                <!-- Сопровождающие -->
+                <div
+                    class="rsvp-field"
+                    id="companions-section"
+                    hidden
+                >
+
+                    <label>Кто будет вместе с вами?</label>
+
+                    <p class="rsvp-hint">
+                        Добавьте супруга, спутника или детей,
+                        если они придут с вами.
+                    </p>
+
+                    <div id="companions-list"></div>
+
+                    <input
+                        type="hidden"
+                        name="Сопровождающие (JSON)"
+                        id="companions-json"
+                        value="[]"
+                    >
+
+                    <button
+                        type="button"
+                        class="rsvp-add-button"
+                        id="add-companion"
+                    >
+                        + Добавить гостя
+                    </button>
+
+                </div>
+
+
+                <!-- Комментарий -->
+                <div class="rsvp-field">
+
+                    <label for="rsvp-comment">
+                        Комментарий (необязательно)
+                    </label>
+
+                    <textarea
+                        id="rsvp-comment"
+                        name="Комментарий"
+                        rows="3"
+                        placeholder="Если хотите что-то сообщить нам..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Сообщение об отправке -->
+                <div
+                    id="rsvp-message"
+                    class="rsvp-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="rsvp-submit-button"
+                    id="rsvp-submit"
+                >
+                    Отправить ответ
+                </button>
+
+            </form>
+
+        </div>
+    </section>
+
+
     <!-- Финал -->
     <footer class="footer">
 
         <p>
-            <br>Очень ждём встречи с вами
+            <br>
+            Очень ждём встречи с вами
             и надеемся провести этот день
             вместе
         </p>
@@ -206,6 +377,9 @@
 
     </footer>
 
+
+    <!-- JavaScript сайта -->
     <script src="script.js"></script>
 
 </body>
+</html>
