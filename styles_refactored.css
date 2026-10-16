@@ -362,41 +362,9 @@ h1 {
     margin-top: 25px;
     font-size: 32px;
     font-style: italic;
+    text-shadow: 1px 1px 2px rgba(24, 61, 50, 0.2);
 }
 
-.footer p,
-.footer .names {
-    transform: translateY(-270px);
-}
-.footer-frame {
-    width: min(600px, 100%);
-    min-height: 200px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    background-image: url("oval.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-
-    padding: 35px 45px;
-}
-
-.footer-frame p {
-    margin: 0 0 10px;
-    font-family: Georgia, serif;
-    font-size: 28px;
-    color: #183d32;
-}
-
-.footer-frame span {
-    font-size: 16px;
-    color: #3d3933;
-}
 
 
 /* =========================================================
@@ -706,25 +674,6 @@ h1 {
         background-position: 50% 0%;
     }
 
-    .footer p {
-        font-size: 14px;
-    }
-
-    .names {
-        font-size: 16px;
-    }
-    .footer-frame {
-        min-height: 150px;
-        padding: 25px 30px;
-    }
-
-    .footer-frame p {
-        font-size: 22px;
-    }
-
-    .footer-frame span {
-        font-size: 14px;
-    }
     /* Конверт */
     .envelope-image-wrapper {
         width: 60vw;
@@ -761,6 +710,87 @@ h1 {
         transform: translateY(-30px);
     }
 }
+
+
+.footer-frame {
+    position: relative;
+    z-index: 1;
+    transform: translateY(-320px);
+
+    width: min(800px, 100%);
+    min-height: 200px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    padding: 100px 100px;
+
+    background-image: url("oval.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+
+    text-align: center;
+}
+
+.footer-frame p {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.footer-frame .names {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--color-text);
+}
+@media (max-width: 600px) {
+    .footer-frame {
+        box-sizing: border-box;
+        width: 110%;
+        max-width: none;
+        min-height: 0;
+        padding: 75px 45px;
+        margin-left: -5%;
+        transform: translateY(-400px);
+
+        background-image: url("oval.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+    }
+
+    .footer-frame p {
+        width: 100%;
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.4;
+        text-align: center;
+        overflow-wrap: break-word;
+    }
+
+    .footer-frame .names {
+        width: 100%;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+        text-align: center;
+        overflow-wrap: break-word;
+    }
+    .footer-frame p,
+    .footer-frame .names {
+        transform: translateY(-10px);
+    }
+}
+
 
 /* ========================================
    RSVP — ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ
@@ -889,7 +919,7 @@ h1 {
     height: 17px;
     flex-shrink: 0;
     margin: 0;
-    accent-color: var(--color-light-text);
+    accent-color: var(--color-text);
 }
 
 
@@ -1126,10 +1156,15 @@ h1 {
     margin: 0 auto;
 }
 
+
+/* ========================================
+   RSVP — ИСПРАВЛЕНИЕ МОБИЛЬНОГО ФОНА
+======================================== */
+
 @media (max-width: 600px) {
     .rsvp {
-        margin: 50px 0;
-        padding: 70px 25px;
+        padding-top: 70px;
+        padding-bottom: 100px;
     }
 
     .rsvp::before {
@@ -1137,5 +1172,57 @@ h1 {
         bottom: -25px;
         left: -5%;
         right: -5%;
+    }
+
+    #rsvp-form {
+        padding-bottom: 15px;
+    }
+
+    .rsvp-submit-button {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 10px;
+    }
+}
+/* ========================================
+   RSVP — ГИРЛЯНДА НАД ЗЕЛЁНОЙ ПОЛОСОЙ
+======================================== */
+/* Гирлянда над верхним краем полотна */
+
+.rsvp::after {
+    content: "";
+    position: absolute;
+
+    top: -300px;
+    left: 50%;
+    z-index: 2;
+
+    width: 100%;
+    height: calc(100vw * 650 / 1200);
+
+    transform: translateX(-50%);
+
+    background-image: url("garland-desktop.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 100%;
+
+    pointer-events: none;
+}
+
+/* Мобильная гирлянда */
+
+@media (max-width: 600px) {
+    .rsvp::after {
+        top: -35px;
+        left: 50%;
+
+        width: 100vw;
+        height: 54.1667vw;
+
+        transform: translateX(-50%) rotate(3deg);
+        transform-origin: left top;
+
+        background-image: url("garland.svg");
     }
 }
