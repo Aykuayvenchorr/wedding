@@ -8,6 +8,10 @@
     --color-light-text: #eee8df;
     --color-footer-text: #f0dfc8;
     --color-envelope-text: #6b5140;
+    --color-dark-background: #183d32;
+
+    --font-main: 'Cormorant Garamond', serif;
+    --font-script: 'Great Vibes', cursive;
 }
 
 *,
@@ -29,9 +33,27 @@ body {
     overflow-x: clip;
     background: var(--color-paper);
     color: var(--color-text);
-    font-family: Georgia, "Times New Roman", serif;
-    font-style: oblique 7deg;
+    font-family: var(--font-main);
+    font-style: italic;
+    font-weight: 500;
 }
+
+/* Полужирный курсив для всех текстовых элементов */
+h1, h2, h3, h4, p, span, a, li, label,
+button, input, textarea, select {
+    font-family: var(--font-main);
+    font-style: italic;
+    font-weight: 500;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: var(--font-main);
+    font-style: italic;
+}
+
 
 /* =========================================================
    2. ПЕРВЫЙ ЭКРАН — HERO
@@ -74,12 +96,13 @@ body {
     font-size: 16px;
     letter-spacing: 4px;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 h1 {
     margin: 0;
     font-size: clamp(55px, 10vw, 100px);
-    font-weight: normal;
+    font-weight: 400;
     line-height: 1;
 }
 
@@ -97,6 +120,7 @@ h1 {
 
 .date-number {
     font-size: 26px;
+    font-weight: 500;
 }
 
 
@@ -124,13 +148,14 @@ h1 {
 .paper-section h2 {
     margin: 0 0 35px;
     font-size: 40px;
-    font-weight: normal;
+    font-weight: 400;
 }
 
 .paper-section p {
     margin: 0 auto 20px;
-    font-size: 18px;
+    font-size: 30px;
     line-height: 1.8;
+    font-weight: 500;
 }
 
 
@@ -169,7 +194,7 @@ h1 {
     left: 0;
     z-index: 0;
     width: 130%;
-    height: 600px;
+    height: 700px;
     transform: translateX(-10%);
     background-image: url("./img/green-strip-mobile.svg");
     background-repeat: no-repeat;
@@ -199,6 +224,16 @@ h1 {
 .details .paper-content {
     position: relative;
     z-index: 3;
+}
+
+.details p {
+    font-family: var(--font-main);
+    font-size: 21px;
+    line-height: 1.6;
+    font-weight: 500;
+    font-style: italic;
+    text-align: justify;
+    text-indent: 25px;
 }
 
 /* Нижняя гирлянда — отдельный элемент в HTML */
@@ -375,7 +410,7 @@ h1 {
     width: min(800px, 100%);
     min-height: 200px;
     margin: 0 auto;
-    padding: 100px 100px;
+    padding: 100px;
     transform: translateY(-320px);
     background-image: url("./img/oval.svg");
     background-repeat: no-repeat;
@@ -386,15 +421,16 @@ h1 {
 
 .footer-frame p {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-main);
     font-size: 22px;
     line-height: 1.5;
+    font-weight: 500;
     color: var(--color-text);
 }
 
 .footer-frame .names {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-main);
     font-size: 28px;
     font-style: italic;
     color: var(--color-text);
@@ -513,7 +549,8 @@ h1 {
 
 .letter-date,
 .letter-names {
-    font-family: "Great Vibes", cursive;
+    font-family: var(--font-script);
+    font-style: normal;
     white-space: nowrap;
 }
 
@@ -569,9 +606,9 @@ h1 {
 
 .tap-text {
     color: #fff4e5;
-    font-family: "Montserrat", sans-serif;
+    font-family: var(--font-main);
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-shadow: 0 1px 3px rgba(30, 20, 15, 0.65);
@@ -623,7 +660,7 @@ h1 {
     isolation: isolate;
     margin: 100px 0;
     padding: 100px 25px;
-    background: #eee8df;
+    background: var(--color-paper);
     color: var(--color-light-text);
 }
 
@@ -705,8 +742,9 @@ h1 {
     display: block;
     padding: 0;
     color: var(--color-light-text);
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-main);
     font-size: 17px;
+    font-weight: 500;
 }
 
 .rsvp-field legend {
@@ -726,9 +764,8 @@ h1 {
 .rsvp-field > input[type="text"],
 .rsvp-field > textarea {
     width: 100%;
-    box-sizing: border-box;
     padding: 13px 14px;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-main);
     font-size: 16px;
     line-height: 1.5;
     color: var(--color-light-text);
@@ -799,9 +836,8 @@ h1 {
 .companion-row select {
     width: 100%;
     min-width: 0;
-    box-sizing: border-box;
     padding: 12px 10px;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-main);
     font-size: 14px;
     color: var(--color-light-text);
     background: rgba(255, 255, 255, 0.45);
@@ -819,8 +855,9 @@ h1 {
 .rsvp-add-button {
     align-self: flex-start;
     padding: 8px 0;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-main);
     font-size: 15px;
+    font-weight: 500;
     color: var(--color-light-text);
     background: transparent;
     border: none;
@@ -836,6 +873,7 @@ h1 {
     width: 30px;
     height: 38px;
     padding: 0;
+    font-family: var(--font-main);
     font-size: 23px;
     line-height: 1;
     color: var(--color-light-text);
@@ -856,8 +894,9 @@ h1 {
     width: 100%;
     min-height: 50px;
     padding: 14px 20px;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-main);
     font-size: 16px;
+    font-weight: 500;
     letter-spacing: 0.03em;
     color: var(--color-light-text);
     background: var(--color-dark-background);
@@ -968,7 +1007,7 @@ h1 {
         top: 0;
         left: 50%;
         width: 110vw;
-        height: 100%;
+        height: 110%;
         transform: translateX(-50%);
         background-image: url("./img/green-strip-mobile.svg");
         background-position: center top;
@@ -976,7 +1015,7 @@ h1 {
     }
 
     .details::after {
-        top: -30px;
+        top: -40px;
         left: 50%;
         width: 108vw;
         height: calc(108vw * 650 / 1200);
@@ -1010,22 +1049,18 @@ h1 {
     .footer {
         height: 250px;
         padding: 180px 25px 20px;
-        box-sizing: border-box;
-
         background-image:
             linear-gradient(
                 rgba(248, 245, 240, 0.25),
                 rgba(248, 245, 240, 0.45)
             ),
             url("./img/footer-img.jfif");
-
         background-size: 100% 100%, cover;
         background-position: center, center 45%;
         background-repeat: no-repeat;
     }
 
     .footer-frame {
-        box-sizing: border-box;
         width: 110%;
         max-width: none;
         min-height: 0;
@@ -1115,8 +1150,6 @@ h1 {
     }
 
     .rsvp::after {
-        content: "";
-        position: absolute;
         top: -35px;
         left: 50%;
         z-index: 2;

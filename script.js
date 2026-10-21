@@ -5,15 +5,12 @@
 const blocks = document.querySelectorAll(".fade-in");
 
 const observer = new IntersectionObserver((entries) => {
-
     entries.forEach((entry) => {
-
         if (entry.isIntersecting) {
             entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
         }
-
     });
-
 });
 
 blocks.forEach((block) => {
@@ -25,17 +22,10 @@ blocks.forEach((block) => {
 // КОНВЕРТ
 // ========================================
 
-const envelopeScreen =
-    document.querySelector("#envelopeScreen");
-
-const letterDate =
-    document.querySelector(".letter-date");
-
-const letterNames =
-    document.querySelector(".letter-names");
-
-const heroVideo =
-    document.querySelector(".hero-video");
+const envelopeScreen = document.querySelector("#envelopeScreen");
+const letterDate = document.querySelector(".letter-date");
+const letterNames = document.querySelector(".letter-names");
+const heroVideo = document.querySelector(".hero-video");
 
 
 // ========================================
@@ -43,15 +33,16 @@ const heroVideo =
 // ========================================
 
 function prepareHandwriting(element) {
+    if (!element) {
+        return [];
+    }
 
     const text = element.textContent.trim();
-
     element.textContent = "";
 
     const letters = [];
 
     [...text].forEach((character) => {
-
         const span = document.createElement("span");
 
         if (character === " ") {
@@ -60,130 +51,80 @@ function prepareHandwriting(element) {
             span.textContent = character;
         }
 
-        // Задержка между буквами
         span.style.animationDelay =
             `${letters.length * 0.05}s`;
 
-        // Пока текст не пишется
         span.style.animationPlayState = "paused";
 
         element.appendChild(span);
-
         letters.push(span);
     });
 
     return letters;
 }
 
-
-// Запоминаем буквы
-const dateLetters =
-    prepareHandwriting(letterDate);
-
-const nameLetters =
-    prepareHandwriting(letterNames);
+const dateLetters = prepareHandwriting(letterDate);
+const nameLetters = prepareHandwriting(letterNames);
 
 
 // ========================================
-// КЛИК ПО ЭКРАНУ
+// КЛИК ПО КОНВЕРТУ
 // ========================================
 
-envelopeScreen.addEventListener("click", () => {
+if (envelopeScreen) {
+    envelopeScreen.addEventListener("click", () => {
+        if (envelopeScreen.classList.contains("opened")) {
+            return;
+        }
 
-    // Не даём запустить анимацию повторно
-    if (envelopeScreen.classList.contains("opened")) {
-        return;
-    }
+        envelopeScreen.classList.add("opened");
 
+        // Запускаем видео приглашения
+        if (heroVideo) {
+            heroVideo.muted = true;
 
-    // ========================================
-    // ОСТАНАВЛИВАЕМ КОНВЕРТ
-    // ========================================
+            heroVideo.play().catch((error) => {
+                console.log("Видео не запустилось:", error);
+            });
+        }
 
-    envelopeScreen.classList.add("opened");
-
-
-    // ========================================
-    // ЗАПУСКАЕМ ВИДЕО ОСНОВНОГО ПРИГЛАШЕНИЯ
-    // ========================================
-
-    if (heroVideo) {
-
-        heroVideo.muted = true;
-
-        heroVideo.play().catch((error) => {
-            console.log("Видео не запустилось:", error);
-        });
-
-    }
-
-
-    // ========================================
-    // НАЧИНАЕМ ПИСАТЬ
-    // ========================================
-
-    setTimeout(() => {
-
-        envelopeScreen.classList.add("writing");
-
-
-        // ====================================
-        // ДАТА
-        // ====================================
-
-        dateLetters.forEach((letter) => {
-            letter.style.animationPlayState = "running";
-        });
-
-
-        // Длительность написания даты
-        const dateDuration =
-            dateLetters.length * 50 + 100;
-
-
-        // ====================================
-        // ИМЕНА
-        // ====================================
-
+        // Начинаем анимацию написания
         setTimeout(() => {
+            envelopeScreen.classList.add("writing");
 
-            nameLetters.forEach((letter) => {
+            dateLetters.forEach((letter) => {
                 letter.style.animationPlayState = "running";
             });
 
-
-            // Небольшая пауза после написания
-            const namesDuration =
-                nameLetters.length * 50 + 700;
-
-
-            // ====================================
-            // ОТКРЫВАЕМ ОСНОВНОЕ ПРИГЛАШЕНИЕ
-            // ====================================
+            const dateDuration =
+                dateLetters.length * 50 + 100;
 
             setTimeout(() => {
+                nameLetters.forEach((letter) => {
+                    letter.style.animationPlayState = "running";
+                });
 
-                envelopeScreen.classList.add("hide");
+                const namesDuration =
+                    nameLetters.length * 50 + 700;
 
-            }, namesDuration);
+                setTimeout(() => {
+                    envelopeScreen.classList.add("hide");
+                }, namesDuration);
 
+            }, dateDuration);
 
-        }, dateDuration);
-
-
-    }, 200);
-
-});
+        }, 200);
+    });
+}
 
 
 // ========================================
-// ФОРМА RSVP — ОТПРАВКА ЧЕРЕЗ FORMSPREE
+// ФОРМА RSVP — FORMSPREE
 // ========================================
 
 const rsvpForm = document.querySelector("#rsvp-form");
 
 if (rsvpForm) {
-
     const attendanceOptions = document.querySelectorAll(
         'input[name="Присутствие"]'
     );
@@ -214,17 +155,57 @@ if (rsvpForm) {
 
 
     // ========================================
-    // ПОКАЗЫВАЕМ ИЛИ СКРЫВАЕМ СОПРОВОЖДАЮЩИХ
+    // СООБЩЕНИЯ ФОРМЫ
+    // ========================================
+
+    function hideRsvpMessage() {
+        rsvpMessage.hidden = true;
+        rsvpMessage.textContent = "";
+        rsvpMessage.classList.remove("success", "error");
+    }
+
+
+    // ========================================
+    // ОБНОВЛЕНИЕ СПИСКА СОПРОВОЖДАЮЩИХ
+    // ========================================
+
+    function updateCompanionsJson() {
+        const rows = companionsList.querySelectorAll(
+            ".companion-row"
+        );
+
+        const companions = Array.from(rows)
+            .map((row) => {
+                const name = row.querySelector(
+                    ".companion-input"
+                ).value.trim();
+
+                const category = row.querySelector(
+                    ".companion-category"
+                ).value;
+
+                return {
+                    name,
+                    category
+                };
+            })
+            .filter((person) => person.name !== "");
+
+        companionsJson.value = JSON.stringify(companions);
+    }
+
+
+    // ========================================
+    // ПОКАЗ И СКРЫТИЕ СОПРОВОЖДАЮЩИХ
     // ========================================
 
     function updateAttendance() {
-
         const selected = document.querySelector(
             'input[name="Присутствие"]:checked'
         );
 
         const isAttending =
-            selected && selected.value === "Буду";
+            selected && selected.value !== "Не смогу прийти";
 
         companionsSection.hidden = !isAttending;
 
@@ -236,62 +217,16 @@ if (rsvpForm) {
         hideRsvpMessage();
     }
 
-
     attendanceOptions.forEach((option) => {
         option.addEventListener("change", updateAttendance);
     });
 
 
     // ========================================
-    // ПРЯЧЕМ СООБЩЕНИЕ
-    // ========================================
-
-    function hideRsvpMessage() {
-        rsvpMessage.hidden = true;
-        rsvpMessage.textContent = "";
-        rsvpMessage.classList.remove("success", "error");
-    }
-
-
-    // ========================================
-    // СОХРАНЯЕМ СОПРОВОЖДАЮЩИХ В JSON
-    // ========================================
-
-    function updateCompanionsJson() {
-
-        const rows = companionsList.querySelectorAll(
-            ".companion-row"
-        );
-
-        const companions = Array.from(rows)
-            .map((row) => {
-
-                const name = row.querySelector(
-                    ".companion-input"
-                ).value.trim();
-
-                const category = row.querySelector(
-                    ".companion-category"
-                ).value;
-
-                return {
-                    name: name,
-                    category: category
-                };
-
-            })
-            .filter((person) => person.name !== "");
-
-        companionsJson.value = JSON.stringify(companions);
-    }
-
-
-    // ========================================
-    // ДОБАВЛЯЕМ СОПРОВОЖДАЮЩЕГО
+    // ДОБАВЛЕНИЕ СОПРОВОЖДАЮЩЕГО
     // ========================================
 
     function addCompanionField() {
-
         const row = document.createElement("div");
         row.className = "companion-row";
 
@@ -307,7 +242,6 @@ if (rsvpForm) {
             "Имя и фамилия сопровождающего"
         );
 
-
         // Категория гостя
         const categorySelect = document.createElement("select");
 
@@ -319,17 +253,14 @@ if (rsvpForm) {
         );
 
         const adultOption = document.createElement("option");
-
         adultOption.value = "Взрослый";
         adultOption.textContent = "Взрослый";
 
         const childOption = document.createElement("option");
-
         childOption.value = "Ребёнок";
         childOption.textContent = "Ребёнок";
 
         categorySelect.append(adultOption, childOption);
-
 
         // Кнопка удаления
         const removeButton = document.createElement("button");
@@ -343,8 +274,6 @@ if (rsvpForm) {
             "Удалить сопровождающего"
         );
 
-
-        // Обновляем данные при изменении полей
         nameInput.addEventListener(
             "input",
             updateCompanionsJson
@@ -355,15 +284,10 @@ if (rsvpForm) {
             updateCompanionsJson
         );
 
-
-        // Удаляем гостя
         removeButton.addEventListener("click", () => {
-
             row.remove();
             updateCompanionsJson();
-
         });
-
 
         row.append(
             nameInput,
@@ -374,15 +298,17 @@ if (rsvpForm) {
         companionsList.appendChild(row);
 
         updateCompanionsJson();
+        hideRsvpMessage();
 
         nameInput.focus();
     }
 
-
-    addCompanionButton.addEventListener(
-        "click",
-        addCompanionField
-    );
+    if (addCompanionButton) {
+        addCompanionButton.addEventListener(
+            "click",
+            addCompanionField
+        );
+    }
 
 
     // ========================================
@@ -390,7 +316,6 @@ if (rsvpForm) {
     // ========================================
 
     rsvpForm.addEventListener("submit", async (event) => {
-
         event.preventDefault();
 
         hideRsvpMessage();
@@ -403,11 +328,11 @@ if (rsvpForm) {
             return;
         }
 
+        // Проверяем заполнение имён сопровождающих
+        const isAttending =
+            selected.value !== "Не смогу прийти";
 
-        // Проверяем, что у каждого добавленного гостя
-        // заполнено имя
-        if (selected.value === "Буду") {
-
+        if (isAttending) {
             const inputs = companionsList.querySelectorAll(
                 ".companion-input"
             );
@@ -417,7 +342,6 @@ if (rsvpForm) {
             );
 
             if (hasEmptyName) {
-
                 rsvpMessage.textContent =
                     "Заполните имя каждого сопровождающего или удалите пустое поле.";
 
@@ -426,50 +350,35 @@ if (rsvpForm) {
 
                 return;
             }
-
         }
 
-
-        // Обновляем список перед отправкой
+        // Обновляем JSON перед отправкой
         updateCompanionsJson();
 
-
-        // Блокируем кнопку на время отправки
         rsvpSubmitButton.disabled = true;
         rsvpSubmitButton.textContent = "Отправляем...";
 
-
         try {
-
             const response = await fetch(rsvpForm.action, {
-
                 method: "POST",
-
                 body: new FormData(rsvpForm),
-
                 headers: {
-                    "Accept": "application/json"
+                    Accept: "application/json"
                 }
-
             });
-
 
             if (!response.ok) {
                 throw new Error("Ошибка отправки формы");
             }
 
-
             // Очищаем форму после успешной отправки
             rsvpForm.reset();
 
             companionsList.replaceChildren();
-
             updateCompanionsJson();
 
             companionsSection.hidden = true;
 
-
-            // Показываем подтверждение
             rsvpMessage.textContent =
                 "Спасибо за ответ! Мы получили ваше сообщение.";
 
@@ -478,9 +387,7 @@ if (rsvpForm) {
 
             rsvpSubmitButton.textContent = "Ответ отправлен";
 
-
         } catch (error) {
-
             console.error("Ошибка отправки RSVP:", error);
 
             rsvpMessage.textContent =
@@ -491,13 +398,8 @@ if (rsvpForm) {
 
             rsvpSubmitButton.textContent = "Попробовать снова";
 
-
         } finally {
-
             rsvpSubmitButton.disabled = false;
-
         }
-
     });
-
 }
