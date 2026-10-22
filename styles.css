@@ -1066,6 +1066,9 @@ h1 {
 
     /* Секции */
 
+    .intro .paper-content {
+        transform: translateY(30px);
+    }
     .paper-section {
         margin: 50px 15px;
         padding: 70px 25px;
