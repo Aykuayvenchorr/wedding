@@ -1,0 +1,199 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 360 360"
+     fill="none">
+
+  <defs>
+    <!-- Основные листья -->
+    <g id="leaf">
+      <path d="M0 0 C-15 -10 -18 -27 -5 -40
+               C8 -32 15 -15 0 0Z"
+            fill="#7c876d" stroke="#59674f" stroke-width="0.8"/>
+      <path d="M0 0 Q-1 -20 -5 -38"
+            stroke="#59674f" stroke-width="0.7"/>
+    </g>
+
+    <g id="leaf-light">
+      <path d="M0 0 C-11 -8 -13 -21 -3 -31
+               C7 -24 11 -10 0 0Z"
+            fill="#a3a58a" stroke="#78816b" stroke-width="0.7"/>
+      <path d="M0 0 L-3 -29"
+            stroke="#78816b" stroke-width="0.6"/>
+    </g>
+
+    <g id="leaf-dark">
+      <path d="M0 0 C-13 -11 -12 -25 1 -36
+               C11 -24 12 -10 0 0Z"
+            fill="#626f58" stroke="#4e5b47" stroke-width="0.8"/>
+      <path d="M0 0 L1 -34"
+            stroke="#4e5b47" stroke-width="0.7"/>
+    </g>
+
+    <!-- Маленький белый цветок -->
+    <g id="daisy">
+      <g fill="#faf4e9" stroke="#ddcdb5" stroke-width="0.65">
+        <ellipse cx="0" cy="-7" rx="3.8" ry="6.5"/>
+        <ellipse cx="6.7" cy="-2.2" rx="3.8" ry="6.5"
+                 transform="rotate(72 6.7 -2.2)"/>
+        <ellipse cx="4.1" cy="5.7" rx="3.8" ry="6.5"
+                 transform="rotate(144 4.1 5.7)"/>
+        <ellipse cx="-4.1" cy="5.7" rx="3.8" ry="6.5"
+                 transform="rotate(216 -4.1 5.7)"/>
+        <ellipse cx="-6.7" cy="-2.2" rx="3.8" ry="6.5"
+                 transform="rotate(288 -6.7 -2.2)"/>
+      </g>
+      <circle r="3" fill="#c9a45e"/>
+      <circle cx="-0.7" cy="-0.7" r="1" fill="#ead49b"/>
+    </g>
+
+    <!-- Цветок с вытянутыми лепестками -->
+    <g id="star-flower">
+      <g fill="#e7c5b3" stroke="#c79b89" stroke-width="0.7">
+        <ellipse cx="0" cy="-8" rx="4" ry="8"/>
+        <ellipse cx="0" cy="-8" rx="4" ry="8" transform="rotate(60)"/>
+        <ellipse cx="0" cy="-8" rx="4" ry="8" transform="rotate(120)"/>
+        <ellipse cx="0" cy="-8" rx="4" ry="8" transform="rotate(180)"/>
+        <ellipse cx="0" cy="-8" rx="4" ry="8" transform="rotate(240)"/>
+        <ellipse cx="0" cy="-8" rx="4" ry="8" transform="rotate(300)"/>
+      </g>
+      <circle r="3" fill="#b88c57"/>
+      <circle r="1" fill="#f4dfa9"/>
+    </g>
+
+    <!-- Небольшая роза -->
+    <g id="rose">
+      <g stroke="#bd9282" stroke-width="0.7">
+        <ellipse cx="0" cy="-5.5" rx="5" ry="7"
+                 fill="#e7c6b5"/>
+        <ellipse cx="5.2" cy="-2" rx="5" ry="6.5"
+                 transform="rotate(48 5.2 -2)" fill="#d9ad9e"/>
+        <ellipse cx="3.5" cy="4" rx="5" ry="6.5"
+                 transform="rotate(130 3.5 4)" fill="#e8c9b8"/>
+        <ellipse cx="-3.5" cy="4" rx="5" ry="6.5"
+                 transform="rotate(230 -3.5 4)" fill="#d8afa0"/>
+        <ellipse cx="-5.2" cy="-2" rx="5" ry="6.5"
+                 transform="rotate(310 -5.2 -2)" fill="#ebd0c0"/>
+      </g>
+      <path d="M-2 -2 C-5 -6 0 -9 3 -6
+               C6 -3 2 1 -1 0 C-3 -1 -2 -4 1 -4"
+            stroke="#a87567" stroke-width="1.1"
+            stroke-linecap="round"/>
+      <circle r="1.5" fill="#e8cba7"/>
+    </g>
+
+    <!-- Бутон -->
+    <g id="bud">
+      <path d="M0 0 C-7 -5 -6 -14 0 -19
+               C7 -14 8 -5 0 0Z"
+            fill="#dcb5a4" stroke="#bd9282" stroke-width="0.7"/>
+      <path d="M0 -2 L0 -17"
+            stroke="#bd9282" stroke-width="0.6"/>
+      <path d="M0 -2 Q-8 -3 -9 -9 Q-3 -8 0 -2Z"
+            fill="#78836a"/>
+      <path d="M0 -2 Q8 -3 9 -9 Q3 -8 0 -2Z"
+            fill="#92977a"/>
+    </g>
+  </defs>
+
+  <!-- Основной извилистый стебель -->
+  <g stroke="#68765b" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 350
+             C20 324 32 303 39 278
+             C47 250 48 227 65 203
+             C81 179 103 162 121 143
+             C142 121 166 106 190 88
+             C218 68 246 48 293 20"
+          stroke-width="2.2"/>
+
+    <!-- Боковые веточки. Они заканчиваются у основания цветков -->
+    <g stroke-width="1.3">
+      <path d="M39 278 Q23 262 17 243"/>
+      <path d="M46 249 Q63 238 74 220"/>
+      <path d="M59 211 Q42 193 37 175"/>
+      <path d="M78 184 Q98 181 111 166"/>
+      <path d="M99 163 Q80 146 74 129"/>
+      <path d="M119 144 Q138 147 151 132"/>
+      <path d="M144 119 Q130 101 131 85"/>
+      <path d="M169 103 Q188 105 201 89"/>
+      <path d="M193 86 Q177 69 179 53"/>
+      <path d="M220 67 Q237 76 253 59"/>
+      <path d="M249 48 Q263 35 265 24"/>
+      <path d="M277 30 Q296 36 309 23"/>
+    </g>
+  </g>
+
+  <!-- Листья вдоль главного стебля -->
+  <use xlink:href="#leaf" transform="translate(20 326) rotate(-48) scale(.85)"/>
+  <use xlink:href="#leaf-light" transform="translate(33 299) rotate(48) scale(.9)"/>
+  <use xlink:href="#leaf-dark" transform="translate(42 273) rotate(-48) scale(.8)"/>
+  <use xlink:href="#leaf-light" transform="translate(48 246) rotate(40) scale(.85)"/>
+  <use xlink:href="#leaf" transform="translate(60 218) rotate(-55) scale(.85)"/>
+  <use xlink:href="#leaf-light" transform="translate(75 190) rotate(48) scale(.8)"/>
+  <use xlink:href="#leaf-dark" transform="translate(91 173) rotate(-48) scale(.8)"/>
+  <use xlink:href="#leaf-light" transform="translate(111 151) rotate(48) scale(.85)"/>
+  <use xlink:href="#leaf" transform="translate(130 132) rotate(-48) scale(.8)"/>
+  <use xlink:href="#leaf-light" transform="translate(151 115) rotate(45) scale(.8)"/>
+  <use xlink:href="#leaf-dark" transform="translate(174 99) rotate(-45) scale(.8)"/>
+  <use xlink:href="#leaf-light" transform="translate(198 82) rotate(45) scale(.8)"/>
+  <use xlink:href="#leaf" transform="translate(224 65) rotate(-45) scale(.8)"/>
+  <use xlink:href="#leaf-light" transform="translate(250 46) rotate(45) scale(.8)"/>
+  <use xlink:href="#leaf-dark" transform="translate(278 30) rotate(-43) scale(.75)"/>
+
+  <!-- Листья на боковых веточках -->
+  <use xlink:href="#leaf-light" transform="translate(29 263) rotate(-70) scale(.65)"/>
+  <use xlink:href="#leaf" transform="translate(64 235) rotate(42) scale(.68)"/>
+  <use xlink:href="#leaf-light" transform="translate(44 197) rotate(-62) scale(.65)"/>
+  <use xlink:href="#leaf" transform="translate(95 177) rotate(53) scale(.65)"/>
+  <use xlink:href="#leaf-light" transform="translate(84 149) rotate(-62) scale(.65)"/>
+  <use xlink:href="#leaf" transform="translate(136 139) rotate(45) scale(.65)"/>
+  <use xlink:href="#leaf-light" transform="translate(139 103) rotate(-55) scale(.65)"/>
+  <use xlink:href="#leaf" transform="translate(187 99) rotate(47) scale(.65)"/>
+  <use xlink:href="#leaf-light" transform="translate(186 68) rotate(-55) scale(.65)"/>
+  <use xlink:href="#leaf" transform="translate(237 72) rotate(50) scale(.65)"/>
+  <use xlink:href="#leaf-light" transform="translate(263 36) rotate(-45) scale(.6)"/>
+  <use xlink:href="#leaf" transform="translate(295 30) rotate(50) scale(.6)"/>
+
+  <!-- Цветы на концах отдельных веточек -->
+  <use xlink:href="#rose" transform="translate(17 239) rotate(-15) scale(1.05)"/>
+  <use xlink:href="#daisy" transform="translate(74 217) scale(.8)"/>
+  <use xlink:href="#star-flower" transform="translate(37 171) rotate(12) scale(.95)"/>
+  <use xlink:href="#rose" transform="translate(111 163) rotate(12) scale(.82)"/>
+  <use xlink:href="#daisy" transform="translate(74 125) scale(.9)"/>
+  <use xlink:href="#star-flower" transform="translate(151 129) rotate(18) scale(.8)"/>
+  <use xlink:href="#rose" transform="translate(131 81) rotate(-10) scale(.78)"/>
+  <use xlink:href="#daisy" transform="translate(201 86) scale(.72)"/>
+  <use xlink:href="#star-flower" transform="translate(179 49) rotate(10) scale(.82)"/>
+  <use xlink:href="#rose" transform="translate(253 57) rotate(15) scale(.75)"/>
+  <use xlink:href="#daisy" transform="translate(265 20) scale(.72)"/>
+  <use xlink:href="#star-flower" transform="translate(310 22) rotate(12) scale(.68)"/>
+
+  <!-- Тонкие ответвления с бутонами -->
+  <g stroke="#78836a" stroke-width="1.05" stroke-linecap="round">
+    <path d="M51 235 Q38 218 35 207"/>
+    <path d="M88 177 Q88 158 98 149"/>
+    <path d="M155 114 Q166 94 164 83"/>
+    <path d="M214 73 Q226 55 228 45"/>
+    <path d="M285 28 Q300 12 313 11"/>
+  </g>
+
+  <use xlink:href="#bud" transform="translate(35 207) rotate(-18) scale(.7)"/>
+  <use xlink:href="#bud" transform="translate(98 149) rotate(22) scale(.62)"/>
+  <use xlink:href="#bud" transform="translate(164 83) rotate(-15) scale(.65)"/>
+  <use xlink:href="#bud" transform="translate(228 45) rotate(20) scale(.65)"/>
+  <use xlink:href="#bud" transform="translate(313 11) rotate(28) scale(.6)"/>
+
+  <!-- Маленькие соцветия на тонких боковых стебельках -->
+  <g stroke="#899078" stroke-width=".8" stroke-linecap="round" fill="none">
+    <path d="M53 287 Q69 277 75 263"/>
+    <path d="M100 204 Q115 197 120 185"/>
+    <path d="M166 137 Q180 129 185 117"/>
+    <path d="M234 88 Q248 83 255 73"/>
+  </g>
+
+  <use xlink:href="#daisy" transform="translate(75 262) scale(.42)"/>
+  <use xlink:href="#daisy" transform="translate(120 184) scale(.4)"/>
+  <use xlink:href="#daisy" transform="translate(185 116) scale(.42)"/>
+  <use xlink:href="#daisy" transform="translate(255 72) scale(.38)"/>
+
+</svg>

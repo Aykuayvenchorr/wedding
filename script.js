@@ -196,16 +196,18 @@ if (rsvpForm) {
 
 
     // ========================================
-    // ПОКАЗ И СКРЫТИЕ СОПРОВОЖДАЮЩИХ
+    // ВЫБОР СОБЫТИЙ И СОПРОВОЖДАЮЩИЕ
     // ========================================
 
-    function updateAttendance() {
-        const selected = document.querySelector(
-            'input[name="Присутствие"]:checked'
-        );
+    const attendanceNone = document.querySelector("#attendance-none");
 
-        const isAttending =
-            selected && selected.value !== "Не смогу прийти";
+    function updateAttendance() {
+        const selectedOptions = Array.from(attendanceOptions)
+            .filter((option) => option.checked);
+
+        const isAttending = selectedOptions.some(
+            (option) => option.value !== "Не смогу прийти"
+        );
 
         companionsSection.hidden = !isAttending;
 
@@ -218,7 +220,21 @@ if (rsvpForm) {
     }
 
     attendanceOptions.forEach((option) => {
-        option.addEventListener("change", updateAttendance);
+        option.addEventListener("change", () => {
+            // Отказ исключает выбор любых событий
+            if (option === attendanceNone && option.checked) {
+                attendanceOptions.forEach((item) => {
+                    if (item !== attendanceNone) {
+                        item.checked = false;
+                    }
+                });
+            } else if (option.checked && attendanceNone) {
+                // Выбрано событие — снимаем отказ
+                attendanceNone.checked = false;
+            }
+
+            updateAttendance();
+        });
     });
 
 
@@ -320,17 +336,25 @@ if (rsvpForm) {
 
         hideRsvpMessage();
 
-        const selected = document.querySelector(
-            'input[name="Присутствие"]:checked'
-        );
 
-        if (!selected) {
+        const selectedOptions = Array.from(attendanceOptions)
+            .filter((option) => option.checked);
+
+        if (selectedOptions.length === 0) {
+            rsvpMessage.textContent =
+                "Пожалуйста, выберите хотя бы один вариант присутствия.";
+
+            rsvpMessage.classList.add("error");
+            rsvpMessage.hidden = false;
+
             return;
         }
 
         // Проверяем заполнение имён сопровождающих
-        const isAttending =
-            selected.value !== "Не смогу прийти";
+        const isAttending = selectedOptions.some(
+            (option) => option.value !== "Не смогу прийти"
+        );
+
 
         if (isAttending) {
             const inputs = companionsList.querySelectorAll(

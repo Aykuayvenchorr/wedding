@@ -157,7 +157,41 @@ h1 {
     line-height: 1.8;
     font-weight: 500;
 }
+/* Декоративные веточки — только для нужных секций */
+.paper-section.intro::before,
+.paper-section.intro::after,
+.paper-section.restaurant::before,
+.paper-section.restaurant::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: url("./img/vine-corner.svg") no-repeat center / contain;
+    pointer-events: none;
+    z-index: 1;
+}
 
+/* Верхний левый угол */
+.paper-section.intro::before {
+    top: -190px;
+    left: -50px;
+    transform: rotate(180deg);
+}
+.paper-section.restaurant::before {
+    top: -320px;
+    left: -50px;
+    transform: rotate(180deg);
+}
+
+/* Нижний правый угол */
+.paper-section.intro::after {
+    right: -40px;
+    bottom: -130px;
+}
+.paper-section.restaurant::after {
+    right: -40px;
+    bottom: -220px;
+}
 
 /* =========================================================
    4. ВСТУПИТЕЛЬНАЯ СЕКЦИЯ
@@ -182,6 +216,7 @@ h1 {
     overflow: visible;
     padding: 100px 25px;
     background: var(--color-paper);
+    background: transparent;
     color: var(--color-light-text);
 }
 
@@ -232,7 +267,7 @@ h1 {
     line-height: 1.6;
     font-weight: 500;
     font-style: italic;
-    text-align: justify;
+    text-align: center;
     text-indent: 25px;
 }
 
@@ -268,6 +303,29 @@ h1 {
     justify-content: center;
     gap: 70px;
     margin-top: 50px;
+}
+
+/* Дата и время в одну строку */
+.details-date-time {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.details-date-time .detail {
+    min-width: 0;
+    width: auto;
+    flex: 0 0 auto;
+}
+
+.details-date-time .detail-title {
+    margin-bottom: 5px;
+}
+
+.details-date-time .detail-text {
+    margin: 0;
 }
 
 .detail {
@@ -531,12 +589,19 @@ h1 {
 /* =========================================================
    13. ТЕКСТ НА ЛИСТКЕ
 ========================================================= */
+.envelope-screen .letter-text,
+.envelope-screen .letter-text *,
+.envelope-screen .letter-date,
+.envelope-screen .letter-names {
+    font-family: var(--font-script), cursive !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+}
+
+
 
 .letter-text {
     position: absolute;
-    font-family: "Great Vibes", cursive !important;
-    white-space: nowrap !important;
-    font-style: normal !important;
     top: 35%;
     left: 50%;
     z-index: 3;
@@ -549,13 +614,7 @@ h1 {
         opacity 1.5s ease,
         transform 1.5s ease;
 }
-
-.letter-date,
-.letter-names {
-    font-family: "Great Vibes", cursive !important;
-    white-space: nowrap !important;
-    font-style: normal !important;
-}    
+ 
 
 .letter-date {
     font-size: 25px;
@@ -665,6 +724,7 @@ h1 {
     padding: 100px 25px;
     background: var(--color-paper);
     color: var(--color-light-text);
+    background: transparent;
 }
 
 .rsvp::before {
@@ -800,24 +860,44 @@ h1 {
 
 
 /* Варианты присутствия */
+/* Сам блок расположен по центру формы */
+#attendance-field {
+    width: fit-content;
+    max-width: 100%;
+    align-self: center;
+    text-align: left;
+}
 
-.rsvp-option {
+/* Заголовок по центру */
+#attendance-field legend {
+    width: 100%;
+    text-align: center;
+}
+
+/* Чекбоксы и подписи выровнены слева */
+#attendance-field .rsvp-option {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 12px;
+    width: 100%;
     color: var(--color-light-text);
     font-size: 16px;
     line-height: 1.5;
+    text-align: left;
     cursor: pointer;
 }
 
-.rsvp-option input[type="radio"] {
+/* Внешний вид чекбоксов */
+#attendance-field .rsvp-option input[type="checkbox"] {
     width: 17px;
     height: 17px;
     flex-shrink: 0;
     margin: 0;
     accent-color: var(--color-text);
 }
+
+
 
 
 /* Список сопровождающих */
@@ -1001,6 +1081,34 @@ h1 {
 
     .details-grid {
         gap: 40px;
+    }
+    /* Декоративные веточки — только для нужных секций */
+    .paper-section.intro::before,
+    .paper-section.intro::after,
+    .paper-section.restaurant::before,
+    .paper-section.restaurant::after {
+        content: "";
+        position: absolute;
+        width: 200px;
+        height: 220px;
+        background: url("./img/vine-corner.svg") no-repeat center / contain;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* Верхний левый угол */
+    .paper-section.intro::before,
+    .paper-section.restaurant::before {
+        top: -65px;
+        left: -50px;
+        transform: rotate(180deg);
+    }
+
+    /* Нижний правый угол */
+    .paper-section.intro::after,
+    .paper-section.restaurant::after {
+        right: -40px;
+        bottom: -130px;
     }
 
 
