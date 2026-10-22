@@ -1067,7 +1067,7 @@ h1 {
     /* Секции */
 
     .intro .paper-content {
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     .paper-section {
         margin: 50px 15px;
@@ -1111,8 +1111,9 @@ h1 {
     .paper-section.intro::after,
     .paper-section.restaurant::after {
         right: -40px;
-        bottom: -130px;
+        bottom: -110px;
     }
+    
 
 
     /* Зелёное полотно и гирлянды */
@@ -1207,7 +1208,7 @@ h1 {
 
     .footer-frame p,
     .footer-frame .names {
-        transform: translateY(-10px);
+        transform: translateY(0px);
     }
 
 
