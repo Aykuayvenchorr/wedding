@@ -97,7 +97,7 @@ function prepareHandwriting(element) {
             span.textContent = character;
         }
 
-        span.style.animationDelay = `${letters.length * 0.05}s`;
+        span.style.animationDelay = `${letters.length * 0.10}s`;
         span.style.animationPlayState = "paused";
 
         element.appendChild(span);
