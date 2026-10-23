@@ -53,6 +53,11 @@ select {
     font-family: var(--font-main);
     font-style: italic;
 }
+.guest-names {
+    white-space: pre-line;
+    text-align: center;
+    line-height: 1.2;
+}
 
 
 /* =========================================================
@@ -1215,8 +1220,8 @@ h1 {
     /* Конверт */
 
     .envelope-image-wrapper {
-        width: 60vw;
-        margin-top: 80px;
+        width: 90vw;
+        margin-top: 120px;
     }
 
     .envelope-content {
@@ -1224,9 +1229,10 @@ h1 {
     }
 
     .letter-text {
-        top: 40%;
+        top: 45%;
         left: 50%;
         line-height: 1;
+        font-size: 23px;
     }
 
     .letter-date {
@@ -1243,10 +1249,11 @@ h1 {
 
     .tap-text {
         font-size: 13px;
+        transform: translateY(30px);
     }
 
     .tap-hint {
-        transform: translateY(-30px);
+        transform: translateY(-150px);
     }
 
 

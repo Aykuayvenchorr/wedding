@@ -427,3 +427,34 @@ if (rsvpForm) {
         }
     });
 }
+
+const envelopeGuests = {
+    "nikita-yuliya": "Никита\nи\nЮлия",
+    "nikita-kate": "Никита\nи\nЕкатерина",
+    "ayrat-diana": "Айрат\nи\nДиана",
+    "zyuzya": "Дмитрий",
+    "ilya-sasha": "Илья\nи\nАлександра",
+    "viktor-kate": "Виктор\nи\nЕкатерина",
+    "sasha-lera": "Александр\nи\nВалерия",
+    "igor-margo": "Игорь\nи\nМаргарита",
+    "dan-liza": "Даниил\nи\nЕлизавета",
+    "family-shev": "Сергей\nи\nОльга",
+    "family-ovch": "Иван\nи\nЛюдмила",
+    "nat-sasha": "Александр\nи\nНаталия",
+    "irina": "Ирина",
+    "grig": "Григорий",
+    "zaur": "Заур",
+    "natalya": "Наталья",
+    "alexey-darya": "Алексей\nи\nДарья",
+    "artem-marina": "Артем\nи\nМарина",
+    "alex-kate": "Александр\nи\nЕкатерина",
+    "sergey-kseniya": "Сергей\nи\nКсения"
+};
+
+const inviteParams = new URLSearchParams(window.location.search);
+const inviteCode = inviteParams.get("invite");
+const guestNamesElement = document.querySelector("#guest-names");
+
+if (guestNamesElement && inviteCode && envelopeGuests[inviteCode]) {
+    guestNamesElement.textContent = envelopeGuests[inviteCode];
+}
