@@ -1,35 +1,75 @@
-// ========================================
-// АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ
-// ========================================
+
+ // ========================================
+ // АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ
+ // ========================================
 
 const blocks = document.querySelectorAll(".fade-in");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-        }
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
     });
-});
 
-blocks.forEach((block) => {
-    observer.observe(block);
-});
+    blocks.forEach((block) => observer.observe(block));
+} else {
+    blocks.forEach((block) => block.classList.add("visible"));
+}
 
 
 // ========================================
-// КОНВЕРТ
+// КОНВЕРТ И ПЕРСОНАЛЬНЫЕ ИМЕНА
 // ========================================
 
 const envelopeScreen = document.querySelector("#envelopeScreen");
-const letterDate = document.querySelector(".letter-date");
+const guestNamesElement = document.querySelector("#guest-names");
 const letterNames = document.querySelector(".letter-names");
 const heroVideo = document.querySelector(".hero-video");
 
+// Коды гостей и имена для отображения на конверте
+const envelopeGuests = {
+    "nikita-yuliya": "Никита\nи\nЮлия",
+    "nikita-kate": "Никита\nи\nЕкатерина",
+    "ayrat-diana": "Айрат\nи\nДиана",
+    "zyuzya": "Дмитрий",
+    "ilya-sasha": "Илья\nи\nАлександра",
+    "viktor-kate": "Виктор\nи\nЕкатерина",
+    "sasha-lera": "Александр\nи\nВалерия",
+    "igor-margo": "Игорь\nи\nМаргарита",
+    "dan-liza": "Даниил\nи\nЕлизавета",
+    "family-shev": "Сергей\nи\nОльга",
+    "family-ovch": "Иван\nи\nЛюдмила",
+    "nat-sasha": "Александр\nи\nНаталия",
+    "irina": "Ирина",
+    "grig": "Григорий",
+    "zaur": "Заур",
+    "natalya": "Наталья",
+    "alexey-darya": "Алексей\nи\nДарья",
+    "artem-marina": "Артем\nи\nМарина",
+    "alex-kate": "Александр\nи\nЕкатерина",
+    "sergey-kseniya": "Сергей\nи\nКсения"
+};
+
+// Получаем код приглашения из адреса страницы
+const inviteParams = new URLSearchParams(window.location.search);
+const inviteCode = inviteParams.get("invite");
+
+// Подставляем имена до запуска анимации
+if (
+    guestNamesElement &&
+    inviteCode &&
+    Object.prototype.hasOwnProperty.call(envelopeGuests, inviteCode)
+) {
+    guestNamesElement.textContent = envelopeGuests[inviteCode];
+}
+
 
 // ========================================
-// ПОДГОТОВКА ТЕКСТА
+// ПОДГОТОВКА ЭФФЕКТА РУКОПИСНОГО ТЕКСТА
 // ========================================
 
 function prepareHandwriting(element) {
@@ -38,11 +78,17 @@ function prepareHandwriting(element) {
     }
 
     const text = element.textContent.trim();
-    element.textContent = "";
+    element.replaceChildren();
 
     const letters = [];
 
     [...text].forEach((character) => {
+        // Сохраняем переносы строк между именами
+        if (character === "\n") {
+            element.appendChild(document.createElement("br"));
+            return;
+        }
+
         const span = document.createElement("span");
 
         if (character === " ") {
@@ -51,9 +97,7 @@ function prepareHandwriting(element) {
             span.textContent = character;
         }
 
-        span.style.animationDelay =
-            `${letters.length * 0.05}s`;
-
+        span.style.animationDelay = `${letters.length * 0.05}s`;
         span.style.animationPlayState = "paused";
 
         element.appendChild(span);
@@ -63,7 +107,9 @@ function prepareHandwriting(element) {
     return letters;
 }
 
-const dateLetters = prepareHandwriting(letterDate);
+// Сначала готовим персональные имена гостей,
+// затем имена жениха и невесты
+const guestLetters = prepareHandwriting(guestNamesElement);
 const nameLetters = prepareHandwriting(letterNames);
 
 
@@ -73,6 +119,7 @@ const nameLetters = prepareHandwriting(letterNames);
 
 if (envelopeScreen) {
     envelopeScreen.addEventListener("click", () => {
+        // Не запускаем анимацию повторно
         if (envelopeScreen.classList.contains("opened")) {
             return;
         }
@@ -88,30 +135,31 @@ if (envelopeScreen) {
             });
         }
 
-        // Начинаем анимацию написания
+        // Начинаем эффект написания
         setTimeout(() => {
             envelopeScreen.classList.add("writing");
 
-            dateLetters.forEach((letter) => {
+            // Этап 1: пишутся имена гостей
+            guestLetters.forEach((letter) => {
                 letter.style.animationPlayState = "running";
             });
 
-            const dateDuration =
-                dateLetters.length * 50 + 100;
+            const guestDuration = guestLetters.length * 50 + 700;
 
+            // Этап 2: пишутся имена пары
             setTimeout(() => {
                 nameLetters.forEach((letter) => {
                     letter.style.animationPlayState = "running";
                 });
 
-                const namesDuration =
-                    nameLetters.length * 50 + 700;
+                const namesDuration = nameLetters.length * 50 + 700;
 
+                // Этап 3: скрываем конверт
                 setTimeout(() => {
                     envelopeScreen.classList.add("hide");
                 }, namesDuration);
 
-            }, dateDuration);
+            }, guestDuration);
 
         }, 200);
     });
@@ -153,12 +201,16 @@ if (rsvpForm) {
         "#rsvp-submit"
     );
 
+    const attendanceNone = document.querySelector("#attendance-none");
+
 
     // ========================================
     // СООБЩЕНИЯ ФОРМЫ
     // ========================================
 
     function hideRsvpMessage() {
+        if (!rsvpMessage) return;
+
         rsvpMessage.hidden = true;
         rsvpMessage.textContent = "";
         rsvpMessage.classList.remove("success", "error");
@@ -166,27 +218,24 @@ if (rsvpForm) {
 
 
     // ========================================
-    // ОБНОВЛЕНИЕ СПИСКА СОПРОВОЖДАЮЩИХ
+    // СПИСОК СОПРОВОЖДАЮЩИХ
     // ========================================
 
     function updateCompanionsJson() {
+        if (!companionsList || !companionsJson) return;
+
         const rows = companionsList.querySelectorAll(
             ".companion-row"
         );
 
         const companions = Array.from(rows)
             .map((row) => {
-                const name = row.querySelector(
-                    ".companion-input"
-                ).value.trim();
-
-                const category = row.querySelector(
-                    ".companion-category"
-                ).value;
+                const nameInput = row.querySelector(".companion-input");
+                const categorySelect = row.querySelector(".companion-category");
 
                 return {
-                    name,
-                    category
+                    name: nameInput ? nameInput.value.trim() : "",
+                    category: categorySelect ? categorySelect.value : ""
                 };
             })
             .filter((person) => person.name !== "");
@@ -196,10 +245,8 @@ if (rsvpForm) {
 
 
     // ========================================
-    // ВЫБОР СОБЫТИЙ И СОПРОВОЖДАЮЩИЕ
+    // ВЫБОР СОБЫТИЙ
     // ========================================
-
-    const attendanceNone = document.querySelector("#attendance-none");
 
     function updateAttendance() {
         const selectedOptions = Array.from(attendanceOptions)
@@ -209,9 +256,11 @@ if (rsvpForm) {
             (option) => option.value !== "Не смогу прийти"
         );
 
-        companionsSection.hidden = !isAttending;
+        if (companionsSection) {
+            companionsSection.hidden = !isAttending;
+        }
 
-        if (!isAttending) {
+        if (!isAttending && companionsList) {
             companionsList.replaceChildren();
             updateCompanionsJson();
         }
@@ -221,7 +270,7 @@ if (rsvpForm) {
 
     attendanceOptions.forEach((option) => {
         option.addEventListener("change", () => {
-            // Отказ исключает выбор любых событий
+            // При отказе снимаем выбор всех событий
             if (option === attendanceNone && option.checked) {
                 attendanceOptions.forEach((item) => {
                     if (item !== attendanceNone) {
@@ -229,7 +278,7 @@ if (rsvpForm) {
                     }
                 });
             } else if (option.checked && attendanceNone) {
-                // Выбрано событие — снимаем отказ
+                // При выборе события снимаем отказ
                 attendanceNone.checked = false;
             }
 
@@ -243,16 +292,16 @@ if (rsvpForm) {
     // ========================================
 
     function addCompanionField() {
+        if (!companionsList) return;
+
         const row = document.createElement("div");
         row.className = "companion-row";
 
-        // Имя и фамилия
+        // Поле имени
         const nameInput = document.createElement("input");
-
         nameInput.type = "text";
         nameInput.className = "companion-input";
         nameInput.placeholder = "Имя и фамилия";
-
         nameInput.setAttribute(
             "aria-label",
             "Имя и фамилия сопровождающего"
@@ -260,9 +309,7 @@ if (rsvpForm) {
 
         // Категория гостя
         const categorySelect = document.createElement("select");
-
         categorySelect.className = "companion-category";
-
         categorySelect.setAttribute(
             "aria-label",
             "Категория гостя"
@@ -280,37 +327,23 @@ if (rsvpForm) {
 
         // Кнопка удаления
         const removeButton = document.createElement("button");
-
         removeButton.type = "button";
         removeButton.className = "rsvp-remove-button";
         removeButton.textContent = "×";
-
         removeButton.setAttribute(
             "aria-label",
             "Удалить сопровождающего"
         );
 
-        nameInput.addEventListener(
-            "input",
-            updateCompanionsJson
-        );
-
-        categorySelect.addEventListener(
-            "change",
-            updateCompanionsJson
-        );
+        nameInput.addEventListener("input", updateCompanionsJson);
+        categorySelect.addEventListener("change", updateCompanionsJson);
 
         removeButton.addEventListener("click", () => {
             row.remove();
             updateCompanionsJson();
         });
 
-        row.append(
-            nameInput,
-            categorySelect,
-            removeButton
-        );
-
+        row.append(nameInput, categorySelect, removeButton);
         companionsList.appendChild(row);
 
         updateCompanionsJson();
@@ -333,30 +366,30 @@ if (rsvpForm) {
 
     rsvpForm.addEventListener("submit", async (event) => {
         event.preventDefault();
-
         hideRsvpMessage();
-
 
         const selectedOptions = Array.from(attendanceOptions)
             .filter((option) => option.checked);
 
+        // Проверяем выбор варианта присутствия
         if (selectedOptions.length === 0) {
-            rsvpMessage.textContent =
-                "Пожалуйста, выберите хотя бы один вариант присутствия.";
+            if (rsvpMessage) {
+                rsvpMessage.textContent =
+                    "Пожалуйста, выберите хотя бы один вариант присутствия.";
 
-            rsvpMessage.classList.add("error");
-            rsvpMessage.hidden = false;
+                rsvpMessage.classList.add("error");
+                rsvpMessage.hidden = false;
+            }
 
             return;
         }
 
-        // Проверяем заполнение имён сопровождающих
         const isAttending = selectedOptions.some(
             (option) => option.value !== "Не смогу прийти"
         );
 
-
-        if (isAttending) {
+        // Проверяем, что все добавленные имена заполнены
+        if (isAttending && companionsList) {
             const inputs = companionsList.querySelectorAll(
                 ".companion-input"
             );
@@ -366,21 +399,25 @@ if (rsvpForm) {
             );
 
             if (hasEmptyName) {
-                rsvpMessage.textContent =
-                    "Заполните имя каждого сопровождающего или удалите пустое поле.";
+                if (rsvpMessage) {
+                    rsvpMessage.textContent =
+                        "Заполните имя каждого сопровождающего или удалите пустое поле.";
 
-                rsvpMessage.classList.add("error");
-                rsvpMessage.hidden = false;
+                    rsvpMessage.classList.add("error");
+                    rsvpMessage.hidden = false;
+                }
 
                 return;
             }
         }
 
-        // Обновляем JSON перед отправкой
+        // Обновляем данные перед отправкой
         updateCompanionsJson();
 
-        rsvpSubmitButton.disabled = true;
-        rsvpSubmitButton.textContent = "Отправляем...";
+        if (rsvpSubmitButton) {
+            rsvpSubmitButton.disabled = true;
+            rsvpSubmitButton.textContent = "Отправляем...";
+        }
 
         try {
             const response = await fetch(rsvpForm.action, {
@@ -398,63 +435,47 @@ if (rsvpForm) {
             // Очищаем форму после успешной отправки
             rsvpForm.reset();
 
-            companionsList.replaceChildren();
+            if (companionsList) {
+                companionsList.replaceChildren();
+            }
+
             updateCompanionsJson();
 
-            companionsSection.hidden = true;
+            if (companionsSection) {
+                companionsSection.hidden = true;
+            }
 
-            rsvpMessage.textContent =
-                "Спасибо за ответ! Мы получили ваше сообщение.";
+            if (rsvpMessage) {
+                rsvpMessage.textContent =
+                    "Спасибо за ответ! Мы получили ваше сообщение.";
 
-            rsvpMessage.classList.add("success");
-            rsvpMessage.hidden = false;
+                rsvpMessage.classList.add("success");
+                rsvpMessage.hidden = false;
+            }
 
-            rsvpSubmitButton.textContent = "Ответ отправлен";
+            if (rsvpSubmitButton) {
+                rsvpSubmitButton.textContent = "Ответ отправлен";
+            }
 
         } catch (error) {
             console.error("Ошибка отправки RSVP:", error);
 
-            rsvpMessage.textContent =
-                "Не удалось отправить ответ. Проверьте интернет-соединение и попробуйте ещё раз.";
+            if (rsvpMessage) {
+                rsvpMessage.textContent =
+                    "Не удалось отправить ответ. Проверьте интернет-соединение и попробуйте ещё раз.";
 
-            rsvpMessage.classList.add("error");
-            rsvpMessage.hidden = false;
+                rsvpMessage.classList.add("error");
+                rsvpMessage.hidden = false;
+            }
 
-            rsvpSubmitButton.textContent = "Попробовать снова";
+            if (rsvpSubmitButton) {
+                rsvpSubmitButton.textContent = "Попробовать снова";
+            }
 
         } finally {
-            rsvpSubmitButton.disabled = false;
+            if (rsvpSubmitButton) {
+                rsvpSubmitButton.disabled = false;
+            }
         }
     });
-}
-
-const envelopeGuests = {
-    "nikita-yuliya": "Никита\nи\nЮлия",
-    "nikita-kate": "Никита\nи\nЕкатерина",
-    "ayrat-diana": "Айрат\nи\nДиана",
-    "zyuzya": "Дмитрий",
-    "ilya-sasha": "Илья\nи\nАлександра",
-    "viktor-kate": "Виктор\nи\nЕкатерина",
-    "sasha-lera": "Александр\nи\nВалерия",
-    "igor-margo": "Игорь\nи\nМаргарита",
-    "dan-liza": "Даниил\nи\nЕлизавета",
-    "family-shev": "Сергей\nи\nОльга",
-    "family-ovch": "Иван\nи\nЛюдмила",
-    "nat-sasha": "Александр\nи\nНаталия",
-    "irina": "Ирина",
-    "grig": "Григорий",
-    "zaur": "Заур",
-    "natalya": "Наталья",
-    "alexey-darya": "Алексей\nи\nДарья",
-    "artem-marina": "Артем\nи\nМарина",
-    "alex-kate": "Александр\nи\nЕкатерина",
-    "sergey-kseniya": "Сергей\nи\nКсения"
-};
-
-const inviteParams = new URLSearchParams(window.location.search);
-const inviteCode = inviteParams.get("invite");
-const guestNamesElement = document.querySelector("#guest-names");
-
-if (guestNamesElement && inviteCode && envelopeGuests[inviteCode]) {
-    guestNamesElement.textContent = envelopeGuests[inviteCode];
 }
