@@ -29,11 +29,8 @@ https://aykuayvenchorr.github.io/wedding/?invite=igor-margo
 Даниил и Елизавета
 https://aykuayvenchorr.github.io/wedding/?invite=dan-liza
 
-Сергей и Ольга
-https://aykuayvenchorr.github.io/wedding/?invite=family-shev
-
-Иван и Людмила
-https://aykuayvenchorr.github.io/wedding/?invite=family-ovch
+Родители
+https://aykuayvenchorr.github.io/wedding/?invite=family
 
 Александр и Наталия
 https://aykuayvenchorr.github.io/wedding/?invite=nat-sasha
