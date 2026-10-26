@@ -479,3 +479,14 @@ if (rsvpForm) {
         }
     });
 }
+
+
+const scrollHint = document.querySelector('.scroll-hint');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+        scrollHint.classList.add('hidden');
+    } else {
+        scrollHint.classList.remove('hidden');
+    }
+});
