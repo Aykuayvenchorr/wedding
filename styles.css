@@ -74,6 +74,32 @@ select {
     text-align: center;
 }
 
+.scroll-hint {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.scroll-hint img {
+    display: block;
+    width: 40px;
+    height: 56px;
+    opacity: 0.85;
+    animation: arrows-bounce 2.5s ease-in-out infinite;
+}
+
+@keyframes arrows-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(7px);
+    }
+}
+
 .hero-video {
     position: absolute;
     top: 0;

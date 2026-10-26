@@ -1,0 +1,23 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="60"
+     height="62"
+     viewBox="0 0 60 62"
+     fill="none">
+
+  <g stroke="#EEE8DF"
+     stroke-width="3.0"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <path d="M8 12 L30 23 L52 12"
+          opacity="0.4"/>
+
+    <path d="M8 22 L30 33 L52 22"
+          opacity="0.7"/>
+
+    <path d="M8 32 L30 43 L52 32"
+          opacity="1"/>
+
+  </g>
+</svg>
