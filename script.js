@@ -67,6 +67,37 @@ if (
 }
 
 
+const inviteTitles = {
+    "nikita-yuliya": "Никита & Юлия",
+    "nikita-kate": "Никита & Екатерина",
+    "ayrat-diana": "Айрат & Диана",
+    "zyuzya": "Дмитрий",
+    "ilya-sasha": "Илья & Александра",
+    "viktor-kate": "Виктор & Екатерина",
+    "sasha-lera": "Александр & Валерия",
+    "igor-margo": "Игорь & Маргарита",
+    "dan-liza": "Даниил & Елизавета",
+    "family": "Папа и мама",
+    "nat-sasha": "Александр & Наталия",
+    "irina": "Ирина",
+    "grig": "Григорий",
+    "zaur": "Заур",
+    "natalya": "Наталья",
+    "alexey-darya": "Алексей & Дарья",
+    "artem-marina": "Артем & Марина",
+    "alex-kate": "Александр & Екатерина",
+    "sergey-kseniya": "Сергей & Ксения"
+};
+// Меняем название вкладки в зависимости от приглашения
+if (
+    inviteCode &&
+    Object.prototype.hasOwnProperty.call(inviteTitles, inviteCode)
+) {
+    document.title = inviteTitles[inviteCode];
+}
+
+
+
 // ========================================
 // ПОДГОТОВКА ЭФФЕКТА РУКОПИСНОГО ТЕКСТА
 // ========================================
