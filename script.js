@@ -32,7 +32,7 @@ const heroVideo = document.querySelector(".hero-video");
 
 // Коды гостей и имена для отображения на конверте
 const envelopeGuests = {
-    "nikita-yuliya": "Никита\nи\nЮлия",
+    "nikita-yuliya": "Дорогие\nНикита и Юлия!",
     "nikita-kate": "Никита\nи\nЕкатерина",
     "ayrat-diana": "Айрат\nи\nДиана",
     "zyuzya": "Дмитрий",
