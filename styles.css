@@ -400,6 +400,19 @@ h1 {
     color: var(--color-light-text);
 }
 
+.route-link {
+    display: block;
+    width: fit-content;
+    margin: 12px auto 0;
+    color: var(--color-dark-background);
+    text-decoration: underline;
+    text-underline-offset: 7px;
+}
+.route-icon {
+    font-style: normal !important;
+    display: inline-block;
+}
+
 
 /* =========================================================
    7. ФОТОСЕКЦИЯ
@@ -517,7 +530,7 @@ h1 {
 .footer-frame p {
     margin: 0;
     font-family: var(--font-main);
-    font-size: 22px;
+    font-size: 17px;
     line-height: 1.5;
     font-weight: 500;
     color: var(--color-text);
@@ -642,6 +655,7 @@ h1 {
     top: 35%;
     left: 50%;
     z-index: 3;
+    font-size: 27px;
     width: max-content;
     color: var(--color-envelope-text);
     text-align: center;
@@ -652,17 +666,6 @@ h1 {
         transform 1.5s ease;
 }
  
-
-.letter-date {
-    font-size: 25px;
-    letter-spacing: 2px;
-}
-
-.letter-names {
-    margin-top: 18px;
-    font-size: 25px;
-}
-
 .letter-text span {
     display: inline-block;
     opacity: 0;
