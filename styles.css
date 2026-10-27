@@ -411,8 +411,9 @@ h1 {
 .route-icon {
     font-style: normal !important;
     display: inline-block;
+    text-decoration: underline;
+    text-underline-offset: 7px;
 }
-
 
 /* =========================================================
    7. ФОТОСЕКЦИЯ

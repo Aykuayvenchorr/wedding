@@ -26,6 +26,26 @@ if ("IntersectionObserver" in window) {
 // ========================================
 
 const envelopeScreen = document.querySelector("#envelopeScreen");
+
+// ========================================
+// ВОЗВРАТ К БАНКЕТУ ПОСЛЕ ПРОСМОТРА PDF
+// ========================================
+
+const returnToBanquet =
+    sessionStorage.getItem("returnToBanquet") === "true";
+
+if (returnToBanquet) {
+    sessionStorage.removeItem("returnToBanquet");
+
+    // Не показываем конверт повторно
+    envelopeScreen?.classList.add("hide");
+
+    // Дожидаемся загрузки страницы и переходим к банкету
+    window.addEventListener("load", () => {
+        document.querySelector("#banquet")?.scrollIntoView();
+    });
+}
+
 const guestNamesElement = document.querySelector("#guest-names");
 const letterNames = document.querySelector(".letter-names");
 const heroVideo = document.querySelector(".hero-video");
