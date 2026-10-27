@@ -543,3 +543,18 @@ window.addEventListener('scroll', () => {
         scrollHint.classList.remove('hidden');
     }
 });
+
+// ========================================
+// ВОССТАНОВЛЕНИЕ ВИДЕО ПОСЛЕ ВОЗВРАТА НА СТРАНИЦУ
+// ========================================
+
+window.addEventListener("pageshow", () => {
+    if (!heroVideo) return;
+
+    // Обновляем отображение видео после возврата
+    heroVideo.load();
+
+    heroVideo.play().catch((error) => {
+        console.log("Не удалось восстановить видео:", error);
+    });
+});
