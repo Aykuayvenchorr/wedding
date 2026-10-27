@@ -37,12 +37,15 @@ const returnToBanquet =
 if (returnToBanquet) {
     sessionStorage.removeItem("returnToBanquet");
 
-    // Не показываем конверт повторно
-    envelopeScreen?.classList.add("hide");
-
-    // Дожидаемся загрузки страницы и переходим к банкету
     window.addEventListener("load", () => {
-        document.querySelector("#banquet")?.scrollIntoView();
+        // Скрываем только экран конверта
+        envelopeScreen?.classList.add("hide");
+
+        // Прокручиваем страницу к банкету
+        document.querySelector("#banquet")?.scrollIntoView({
+            behavior: "instant",
+            block: "start"
+        });
     });
 }
 
