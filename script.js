@@ -560,25 +560,43 @@ window.addEventListener("scroll", () => {
 });
 
 
+
 // ========================================
 // ВОССТАНОВЛЕНИЕ СТРАНИЦЫ И ВИДЕО
 // ========================================
 
 window.addEventListener("pageshow", (event) => {
-    // При возвращении из PDF не сбрасываем позицию,
-    // если страница должна открыть банкет.
-    if (
-        sessionStorage.getItem("returnToBanquet") === "true"
-    ) {
-        return;
+    // Если возвращаемся из PDF, сохраняем переход к банкету.
+    const shouldReturnToBanquet =
+        sessionStorage.getItem("returnToBanquet") === "true";
+
+    if (shouldReturnToBanquet) {
+        sessionStorage.removeItem("returnToBanquet");
+
+        envelopeScreen?.classList.add("hide");
+
+        requestAnimationFrame(() => {
+            document.querySelector("#banquet")?.scrollIntoView({
+                behavior: "instant",
+                block: "start"
+            });
+        });
+    } else if (event.persisted) {
+        // При восстановлении страницы из кэша
+        // возвращаем пользователя к началу.
+        window.scrollTo(0, 0);
     }
 
-    // При восстановлении страницы из кэша не запускаем
-    // видео принудительно и не сбрасываем его позицию.
-    if (event.persisted) {
-        return;
-    }
+    // Восстанавливаем видео после возвращения на сайт.
+    if (heroVideo) {
+        heroVideo.muted = true;
 
-    // При обычной загрузке или обновлении начинаем сверху.
-    window.scrollTo(0, 0);
+        if (heroVideo.readyState === 0) {
+            heroVideo.load();
+        }
+
+        heroVideo.play().catch((error) => {
+            console.log("Не удалось запустить видео:", error);
+        });
+    }
 });
