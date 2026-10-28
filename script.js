@@ -588,15 +588,11 @@ window.addEventListener("pageshow", (event) => {
     }
 
     // Восстанавливаем видео после возвращения на сайт.
-    if (heroVideo) {
-        heroVideo.muted = true;
-
-        if (heroVideo.readyState === 0) {
-            heroVideo.load();
-        }
-
-        heroVideo.play().catch((error) => {
-            console.log("Не удалось запустить видео:", error);
-        });
-    }
+    if (!heroVideo) return;
+    heroVideo.muted = true;
+    // Если видео ещё не загрузилось, загружаем его.
+    if (heroVideo.readyState === 0) {heroVideo.load();}
+    heroVideo.play().catch((error) => {
+        console.error("Ошибка воспроизведения видео:", error);
+    });
 });
