@@ -1,7 +1,16 @@
+// ========================================
+// НАСТРОЙКИ ВОССТАНОВЛЕНИЯ СТРАНИЦЫ
+// ========================================
 
- // ========================================
- // АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ
- // ========================================
+// Не восстанавливаем старую позицию прокрутки автоматически.
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+
+// ========================================
+// АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ
+// ========================================
 
 const blocks = document.querySelectorAll(".fade-in");
 
@@ -26,6 +35,10 @@ if ("IntersectionObserver" in window) {
 // ========================================
 
 const envelopeScreen = document.querySelector("#envelopeScreen");
+const guestNamesElement = document.querySelector("#guest-names");
+const letterNames = document.querySelector(".letter-names");
+const heroVideo = document.querySelector(".hero-video");
+
 
 // ========================================
 // ВОЗВРАТ К БАНКЕТУ ПОСЛЕ ПРОСМОТРА PDF
@@ -34,26 +47,32 @@ const envelopeScreen = document.querySelector("#envelopeScreen");
 const returnToBanquet =
     sessionStorage.getItem("returnToBanquet") === "true";
 
+// Флаг удаляем сразу, чтобы он не сработал при следующем обновлении.
 if (returnToBanquet) {
     sessionStorage.removeItem("returnToBanquet");
 
+    // Ждём полной загрузки страницы и её ресурсов.
     window.addEventListener("load", () => {
-        // Скрываем только экран конверта
         envelopeScreen?.classList.add("hide");
 
-        // Прокручиваем страницу к банкету
-        document.querySelector("#banquet")?.scrollIntoView({
-            behavior: "instant",
-            block: "start"
-        });
+        const banquet = document.querySelector("#banquet");
+
+        if (banquet) {
+            requestAnimationFrame(() => {
+                banquet.scrollIntoView({
+                    behavior: "instant",
+                    block: "start"
+                });
+            });
+        }
     });
 }
 
-const guestNamesElement = document.querySelector("#guest-names");
-const letterNames = document.querySelector(".letter-names");
-const heroVideo = document.querySelector(".hero-video");
 
-// Коды гостей и имена для отображения на конверте
+// ========================================
+// ПЕРСОНАЛИЗАЦИЯ ПРИГЛАШЕНИЯ
+// ========================================
+
 const envelopeGuests = {
     "nikita-yuliya": "Дорогие\nНикита и Юлия!",
     "nikita-kate": "Дорогие\nНикита и Екатерина!",
@@ -76,20 +95,6 @@ const envelopeGuests = {
     "sergey-kseniya": "Дорогие\nСергей и Ксения!"
 };
 
-// Получаем код приглашения из адреса страницы
-const inviteParams = new URLSearchParams(window.location.search);
-const inviteCode = inviteParams.get("invite");
-
-// Подставляем имена до запуска анимации
-if (
-    guestNamesElement &&
-    inviteCode &&
-    Object.prototype.hasOwnProperty.call(envelopeGuests, inviteCode)
-) {
-    guestNamesElement.textContent = envelopeGuests[inviteCode];
-}
-
-
 const inviteTitles = {
     "nikita-yuliya": "Никита & Юлия",
     "nikita-kate": "Никита & Екатерина",
@@ -111,14 +116,26 @@ const inviteTitles = {
     "alex-kate": "Александр & Екатерина",
     "sergey-kseniya": "Сергей & Ксения"
 };
-// Меняем название вкладки в зависимости от приглашения
+
+const inviteParams = new URLSearchParams(window.location.search);
+const inviteCode = inviteParams.get("invite");
+
+// Подставляем персональные имена.
+if (
+    guestNamesElement &&
+    inviteCode &&
+    Object.prototype.hasOwnProperty.call(envelopeGuests, inviteCode)
+) {
+    guestNamesElement.textContent = envelopeGuests[inviteCode];
+}
+
+// Меняем заголовок вкладки.
 if (
     inviteCode &&
     Object.prototype.hasOwnProperty.call(inviteTitles, inviteCode)
 ) {
     document.title = inviteTitles[inviteCode];
 }
-
 
 
 // ========================================
@@ -136,7 +153,6 @@ function prepareHandwriting(element) {
     const letters = [];
 
     [...text].forEach((character) => {
-        // Сохраняем переносы строк между именами
         if (character === "\n") {
             element.appendChild(document.createElement("br"));
             return;
@@ -160,8 +176,6 @@ function prepareHandwriting(element) {
     return letters;
 }
 
-// Сначала готовим персональные имена гостей,
-// затем имена жениха и невесты
 const guestLetters = prepareHandwriting(guestNamesElement);
 const nameLetters = prepareHandwriting(letterNames);
 
@@ -172,14 +186,13 @@ const nameLetters = prepareHandwriting(letterNames);
 
 if (envelopeScreen) {
     envelopeScreen.addEventListener("click", () => {
-        // Не запускаем анимацию повторно
         if (envelopeScreen.classList.contains("opened")) {
             return;
         }
 
         envelopeScreen.classList.add("opened");
 
-        // Запускаем видео приглашения
+        // Запускаем видео только после взаимодействия пользователя.
         if (heroVideo) {
             heroVideo.muted = true;
 
@@ -188,18 +201,17 @@ if (envelopeScreen) {
             });
         }
 
-        // Начинаем эффект написания
         setTimeout(() => {
             envelopeScreen.classList.add("writing");
 
-            // Этап 1: пишутся имена гостей
+            // Этап 1: имена гостей.
             guestLetters.forEach((letter) => {
                 letter.style.animationPlayState = "running";
             });
 
             const guestDuration = guestLetters.length * 50 + 700;
 
-            // Этап 2: пишутся имена пары
+            // Этап 2: имена пары.
             setTimeout(() => {
                 nameLetters.forEach((letter) => {
                     letter.style.animationPlayState = "running";
@@ -207,7 +219,7 @@ if (envelopeScreen) {
 
                 const namesDuration = nameLetters.length * 50 + 700;
 
-                // Этап 3: скрываем конверт
+                // Этап 3: скрываем конверт.
                 setTimeout(() => {
                     envelopeScreen.classList.add("hide");
                 }, namesDuration);
@@ -277,9 +289,7 @@ if (rsvpForm) {
     function updateCompanionsJson() {
         if (!companionsList || !companionsJson) return;
 
-        const rows = companionsList.querySelectorAll(
-            ".companion-row"
-        );
+        const rows = companionsList.querySelectorAll(".companion-row");
 
         const companions = Array.from(rows)
             .map((row) => {
@@ -323,7 +333,6 @@ if (rsvpForm) {
 
     attendanceOptions.forEach((option) => {
         option.addEventListener("change", () => {
-            // При отказе снимаем выбор всех событий
             if (option === attendanceNone && option.checked) {
                 attendanceOptions.forEach((item) => {
                     if (item !== attendanceNone) {
@@ -331,7 +340,6 @@ if (rsvpForm) {
                     }
                 });
             } else if (option.checked && attendanceNone) {
-                // При выборе события снимаем отказ
                 attendanceNone.checked = false;
             }
 
@@ -350,7 +358,6 @@ if (rsvpForm) {
         const row = document.createElement("div");
         row.className = "companion-row";
 
-        // Поле имени
         const nameInput = document.createElement("input");
         nameInput.type = "text";
         nameInput.className = "companion-input";
@@ -360,13 +367,9 @@ if (rsvpForm) {
             "Имя и фамилия сопровождающего"
         );
 
-        // Категория гостя
         const categorySelect = document.createElement("select");
         categorySelect.className = "companion-category";
-        categorySelect.setAttribute(
-            "aria-label",
-            "Категория гостя"
-        );
+        categorySelect.setAttribute("aria-label", "Категория гостя");
 
         const adultOption = document.createElement("option");
         adultOption.value = "Взрослый";
@@ -378,7 +381,6 @@ if (rsvpForm) {
 
         categorySelect.append(adultOption, childOption);
 
-        // Кнопка удаления
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.className = "rsvp-remove-button";
@@ -405,12 +407,7 @@ if (rsvpForm) {
         nameInput.focus();
     }
 
-    if (addCompanionButton) {
-        addCompanionButton.addEventListener(
-            "click",
-            addCompanionField
-        );
-    }
+    addCompanionButton?.addEventListener("click", addCompanionField);
 
 
     // ========================================
@@ -424,7 +421,6 @@ if (rsvpForm) {
         const selectedOptions = Array.from(attendanceOptions)
             .filter((option) => option.checked);
 
-        // Проверяем выбор варианта присутствия
         if (selectedOptions.length === 0) {
             if (rsvpMessage) {
                 rsvpMessage.textContent =
@@ -441,11 +437,8 @@ if (rsvpForm) {
             (option) => option.value !== "Не смогу прийти"
         );
 
-        // Проверяем, что все добавленные имена заполнены
         if (isAttending && companionsList) {
-            const inputs = companionsList.querySelectorAll(
-                ".companion-input"
-            );
+            const inputs = companionsList.querySelectorAll(".companion-input");
 
             const hasEmptyName = Array.from(inputs).some(
                 (input) => input.value.trim() === ""
@@ -464,7 +457,6 @@ if (rsvpForm) {
             }
         }
 
-        // Обновляем данные перед отправкой
         updateCompanionsJson();
 
         if (rsvpSubmitButton) {
@@ -481,11 +473,28 @@ if (rsvpForm) {
                 }
             });
 
-            if (!response.ok) {
-                throw new Error("Ошибка отправки формы");
+            // Считываем ответ сервера, чтобы показывать реальную ошибку.
+            const responseText = await response.text();
+
+            let result = {};
+
+            try {
+                result = responseText ? JSON.parse(responseText) : {};
+            } catch {
+                result = {};
             }
 
-            // Очищаем форму после успешной отправки
+            console.log("Formspree — статус:", response.status);
+            console.log("Formspree — ответ:", result);
+
+            if (!response.ok) {
+                const errorMessage = Array.isArray(result.errors)
+                    ? result.errors.map((error) => error.message).join(", ")
+                    : `Ошибка отправки: HTTP ${response.status}`;
+
+                throw new Error(errorMessage);
+            }
+
             rsvpForm.reset();
 
             if (companionsList) {
@@ -534,27 +543,42 @@ if (rsvpForm) {
 }
 
 
-const scrollHint = document.querySelector('.scroll-hint');
+// ========================================
+// ПОДСКАЗКА О ПРОКРУТКЕ
+// ========================================
 
-window.addEventListener('scroll', () => {
+const scrollHint = document.querySelector(".scroll-hint");
+
+window.addEventListener("scroll", () => {
+    if (!scrollHint) return;
+
     if (window.scrollY > 80) {
-        scrollHint.classList.add('hidden');
+        scrollHint.classList.add("hidden");
     } else {
-        scrollHint.classList.remove('hidden');
+        scrollHint.classList.remove("hidden");
     }
 });
 
+
 // ========================================
-// ВОССТАНОВЛЕНИЕ ВИДЕО ПОСЛЕ ВОЗВРАТА НА СТРАНИЦУ
+// ВОССТАНОВЛЕНИЕ СТРАНИЦЫ И ВИДЕО
 // ========================================
 
-window.addEventListener("pageshow", () => {
-    if (!heroVideo) return;
+window.addEventListener("pageshow", (event) => {
+    // При возвращении из PDF не сбрасываем позицию,
+    // если страница должна открыть банкет.
+    if (
+        sessionStorage.getItem("returnToBanquet") === "true"
+    ) {
+        return;
+    }
 
-    // Обновляем отображение видео после возврата
-    heroVideo.load();
+    // При восстановлении страницы из кэша не запускаем
+    // видео принудительно и не сбрасываем его позицию.
+    if (event.persisted) {
+        return;
+    }
 
-    heroVideo.play().catch((error) => {
-        console.log("Не удалось восстановить видео:", error);
-    });
+    // При обычной загрузке или обновлении начинаем сверху.
+    window.scrollTo(0, 0);
 });
