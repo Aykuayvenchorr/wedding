@@ -58,3 +58,6 @@ https://aykuayvenchorr.github.io/wedding/?invite=alex-kate
 
 Сергей и Ксения
 https://aykuayvenchorr.github.io/wedding/?invite=sergey-kseniya
+
+Владимир и Ольга
+https://aykuayvenchorr.github.io/wedding/?invite=vlad-olga

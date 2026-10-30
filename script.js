@@ -92,7 +92,8 @@ const envelopeGuests = {
     "alexey-darya": "Дорогие\nАлексей и Дарья!",
     "artem-marina": "Дорогие\nАртем и Марина!",
     "alex-kate": "Дорогие\nАлександр и Екатерина!",
-    "sergey-kseniya": "Дорогие\nСергей и Ксения!"
+    "sergey-kseniya": "Дорогие\nСергей и Ксения!",
+    "vlad-olga": "Дорогие\nВладимир и Ольга!"
 };
 
 const inviteTitles = {
@@ -114,7 +115,8 @@ const inviteTitles = {
     "alexey-darya": "Алексей & Дарья",
     "artem-marina": "Артем & Марина",
     "alex-kate": "Александр & Екатерина",
-    "sergey-kseniya": "Сергей & Ксения"
+    "sergey-kseniya": "Сергей & Ксения",
+    "vlad-olga": "Владимир & Ольга"
 };
 
 const inviteParams = new URLSearchParams(window.location.search);
